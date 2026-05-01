@@ -1,0 +1,1381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Transaction Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f1;
+    --surface: #ffffff;
+    --ink: #181715;
+    --ink-2: #4a4842;
+    --ink-3: #8a877f;
+    --line: #e6e2d9;
+    --line-2: #ddd8cc;
+    --listing: #d63a2f;     /* red â€” sellers */
+    --listing-soft: #fde6e3;
+    --resale: #1a8f4c;      /* green â€” buyers */
+    --resale-soft: #dff3e6;
+    --presale: #f1c30c;     /* yellow â€” pre-sale */
+    --presale-soft: #fcf3c8;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  input, textarea { font-family: inherit; }
+
+  /* ===== App shell ===== */
+  .app {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 28px 32px 80px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .brand h1 {
+    margin: 0;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+  }
+  .brand .sub {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-3);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .seg {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .seg button {
+    padding: 7px 14px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition: background .15s, color .15s;
+  }
+  .seg button.active {
+    background: var(--ink);
+    color: #fff;
+  }
+  .seg button:hover:not(.active) { color: var(--ink); }
+  .icon-btn {
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-2);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--ink-2);
+    transition: background .15s;
+  }
+  .icon-btn:hover { background: #f0ece2; }
+
+  /* ===== Client header card ===== */
+  .clients {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .client-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .client-card .stripe {
+    height: 6px;
+    background: var(--accent);
+  }
+  .client-card.collapsed { display: none; }
+  .client-body {
+    padding: 16px 18px 18px;
+  }
+  .client-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  .client-tag .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  }
+  .client-card h2 {
+    margin: 0 0 14px;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.005em;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 10px;
+  }
+  .field label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  .field input {
+    border: none;
+    border-bottom: 1px solid var(--line-2);
+    background: transparent;
+    padding: 4px 0 6px;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .15s;
+  }
+  .field input:focus { border-color: var(--accent); }
+
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line-2);
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width .25s ease;
+  }
+  .progress-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-2);
+    min-width: 56px;
+    text-align: right;
+  }
+
+  /* ===== Lists wrapper ===== */
+  .lists {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .lists.single { grid-template-columns: 1fr; max-width: 920px; margin: 0 auto; }
+
+  .list-col {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .list-col.hidden { display: none; }
+
+  .list-head {
+    padding: 14px 18px;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .list-head.yellow { color: #2a2300; }
+  .list-head .title-block {
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .list-head .title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .list-head .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    opacity: 0.85;
+  }
+  .list-head .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: rgba(0,0,0,0.18);
+    padding: 4px 9px;
+    border-radius: 999px;
+  }
+  .list-head.yellow .count { background: rgba(0,0,0,0.1); }
+
+  .list-toolbar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: #fbfaf6;
+  }
+  .list-toolbar .filter {
+    display: inline-flex;
+    border: 1px solid var(--line-2);
+    border-radius: 7px;
+    padding: 2px;
+  }
+  .list-toolbar .filter button {
+    padding: 4px 10px;
+    font-size: 11.5px;
+    font-weight: 500;
+    border-radius: 5px;
+    color: var(--ink-3);
+  }
+  .list-toolbar .filter button.active {
+    background: var(--ink);
+    color: #fff;
+  }
+  .list-toolbar .search {
+    flex: 1;
+    border: 1px solid var(--line-2);
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 12px;
+    background: #fff;
+    outline: none;
+  }
+  .list-toolbar .search:focus { border-color: var(--ink-3); }
+
+  .list-body {
+    padding: 6px 0 12px;
+  }
+
+  .section-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px 8px;
+    margin-top: 4px;
+  }
+  .section-head .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-head .lbl::before {
+    content: '';
+    width: 14px; height: 1px; background: var(--accent);
+  }
+  .section-head .pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-3);
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    gap: 10px;
+    align-items: start;
+    padding: 7px 18px;
+    border-bottom: 1px solid #f3efe5;
+    transition: background .12s;
+    position: relative;
+  }
+  .item:hover { background: #fbfaf5; }
+  .item.done .label { color: var(--ink-3); text-decoration: line-through; text-decoration-thickness: 1px; text-decoration-color: var(--accent); }
+
+  .checkbox {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--line-2);
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    margin-top: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: background .12s, border-color .12s, color .12s;
+    flex-shrink: 0;
+  }
+  .checkbox:hover { border-color: var(--accent); }
+  .item.done .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .list-head.yellow ~ .list-body .item.done .checkbox { color: #2a2300; }
+
+  .label {
+    font-size: 13.5px;
+    color: var(--ink);
+    padding-top: 1px;
+    cursor: pointer;
+  }
+
+  .item .note-toggle {
+    width: 22px; height: 22px;
+    border-radius: 5px;
+    color: var(--ink-3);
+    display: inline-flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity .12s, background .12s;
+  }
+  .item:hover .note-toggle, .item.has-note .note-toggle { opacity: 1; }
+  .item .note-toggle:hover { background: var(--line); color: var(--ink); }
+  .item.has-note .note-toggle { color: var(--accent); }
+
+  .note {
+    grid-column: 2 / 4;
+    margin-top: 4px;
+    border-left: 2px solid var(--accent-soft);
+    padding: 4px 8px;
+    background: #fbfaf5;
+    border-radius: 0 5px 5px 0;
+    display: none;
+  }
+  .item.note-open .note { display: block; }
+  .note textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    resize: vertical;
+    min-height: 32px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    outline: none;
+    padding: 2px 0;
+  }
+  .note textarea::placeholder { color: var(--ink-3); }
+
+  /* Date / number / text inline value */
+  .value-input {
+    grid-column: 2 / 4;
+    margin-top: 2px;
+    display: none;
+  }
+  .item.has-value-field .value-input { display: block; }
+  .value-input input {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12.5px;
+    background: #fff;
+    outline: none;
+    width: 100%;
+    max-width: 240px;
+    color: var(--ink);
+  }
+  .value-input input:focus { border-color: var(--accent); }
+
+  .blank-row {
+    height: 14px;
+    border-bottom: 1px solid #f3efe5;
+  }
+
+  /* ===== Footer summary ===== */
+  .summary {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .summary.single { grid-template-columns: 1fr; max-width: 920px; margin-left: auto; margin-right: auto; }
+  .summary-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .summary-card.hidden { display: none; }
+  .summary-card .head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .summary-card .head .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .summary-card .head .lbl .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  }
+  .summary-card .num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    line-height: 1;
+  }
+  .summary-card .num span { color: var(--ink-3); font-size: 18px; }
+  .summary-card .pbar {
+    height: 6px; background: var(--line); border-radius: 3px; margin-top: 12px; overflow: hidden;
+  }
+  .summary-card .pbar > div { height: 100%; background: var(--accent); transition: width .25s; }
+
+  /* ===== Reset confirm ===== */
+  .reset-modal {
+    position: fixed; inset: 0; background: rgba(20,18,15,0.4);
+    display: none; align-items: center; justify-content: center; z-index: 50;
+  }
+  .reset-modal.open { display: flex; }
+  .reset-modal .box {
+    background: #fff; border-radius: 14px; padding: 22px 24px; max-width: 380px;
+    border: 1px solid var(--line);
+  }
+  .reset-modal h3 { margin: 0 0 8px; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 22px; }
+  .reset-modal p { margin: 0 0 18px; color: var(--ink-2); font-size: 13px; }
+  .reset-modal .actions { display: flex; justify-content: flex-end; gap: 8px; }
+  .reset-modal button {
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    border: 1px solid var(--line-2); background: #fff;
+  }
+  .reset-modal button.danger { background: var(--listing); border-color: var(--listing); color: #fff; }
+
+  /* Filters by responsive */
+  @media (max-width: 1180px) {
+    .lists, .summary, .clients { grid-template-columns: 1fr; }
+    .list-col.hidden-mobile { display: none; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .topbar, .list-toolbar, .top-actions, .icon-btn, .reset-modal { display: none !important; }
+    .lists, .clients, .summary { grid-template-columns: repeat(3, 1fr); page-break-inside: avoid; }
+    .list-col, .client-card { break-inside: avoid; border-color: #aaa; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <h1>Transaction Tracker</h1>
+      <span class="sub" id="updated-stamp">â€” Synced locally</span>
+    </div>
+    <div class="top-actions">
+      <div class="seg" role="tablist" aria-label="View">
+        <button data-view="all" class="active">All three</button>
+        <button data-view="listing">Listing</button>
+        <button data-view="resale">Re-Sale Buy</button>
+        <button data-view="presale">Pre-Sale</button>
+      </div>
+      <button class="icon-btn" id="print-btn" title="Print">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      </button>
+      <button class="icon-btn" id="reset-btn" title="Reset all">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Client info cards -->
+  <div class="clients" id="clients"></div>
+
+  <!-- Three columns of checklists -->
+  <div class="lists" id="lists"></div>
+
+  <!-- Bottom summary / commission -->
+  <div class="summary" id="summary"></div>
+</div>
+
+<div class="reset-modal" id="reset-modal">
+  <div class="box">
+    <h3>Reset everything?</h3>
+    <p>This clears all checked items, notes, values, and client info across all three transactions. This cannot be undone.</p>
+    <div class="actions">
+      <button id="reset-cancel">Cancel</button>
+      <button class="danger" id="reset-confirm">Reset all</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Data model â€” three transaction types.
+   Each list has sections; each item has an id, label, and
+   optional `field` (text|date|number) for an inline value.
+   ============================================================ */
+
+const DATA = {
+  listing: {
+    title: 'Listing',
+    role: 'Sellers Â· Red',
+    accent: '#d63a2f',
+    accentSoft: '#fde6e3',
+    headClass: '',
+    sections: [
+      { name: 'Client #1', items: [
+        { id: 'l_c1_legal', label: 'Legal Name', field: 'text' },
+        { id: 'l_c1_addr', label: 'Address', field: 'text' },
+        { id: 'l_c1_phone', label: 'Phone', field: 'text' },
+        { id: 'l_c1_email', label: 'Email', field: 'text' },
+        { id: 'l_c1_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'l_c1_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'l_c1_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'l_c1_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Client #2', items: [
+        { id: 'l_c2_legal', label: 'Legal Name', field: 'text' },
+        { id: 'l_c2_addr', label: 'Address', field: 'text' },
+        { id: 'l_c2_phone', label: 'Phone', field: 'text' },
+        { id: 'l_c2_email', label: 'Email', field: 'text' },
+        { id: 'l_c2_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'l_c2_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'l_c2_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'l_c2_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Important Dates', items: [
+        { id: 'l_d_initial', label: 'Initial Viewing', field: 'date' },
+        { id: 'l_d_media', label: 'Media Filming', field: 'date' },
+        { id: 'l_d_lstart', label: 'Listing Start Date', field: 'date' },
+        { id: 'l_d_lexp', label: 'Listing Expiry Date', field: 'date' },
+        { id: 'l_d_open', label: 'Openhouse Dates and Times', field: 'text' },
+        { id: 'l_d_a1', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a2', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a3', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a4', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a5', label: 'Amendment', field: 'text' },
+      ]},
+      { name: 'Accepted Offer Dates', items: [
+        { id: 'l_o_accepted', label: 'Accepted Offer Date', field: 'date' },
+        { id: 'l_o_inspection', label: 'Inspection Date & Time', field: 'date' },
+        { id: 'l_o_subject', label: 'Subject Removal Date', field: 'date' },
+        { id: 'l_o_completion', label: 'Completion', field: 'date' },
+        { id: 'l_o_adjust', label: 'Adjustment Date', field: 'date' },
+        { id: 'l_o_poss', label: 'Possession/Closing Date', field: 'date' },
+        { id: 'l_o_cal', label: 'Add Dates in Calendar' },
+      ]},
+      { name: 'Skyslope Documents', items: [
+        { id: 'l_s_create', label: 'Create Skyslope File' },
+        { id: 'l_s_cps', label: 'Upload CPS' },
+        { id: 'l_s_dorts', label: 'Send DORTS' },
+        { id: 'l_s_dortsup', label: 'Upload DORTS' },
+        { id: 'l_s_send_pc', label: 'Send Privacy & Consent form' },
+        { id: 'l_s_up_pc', label: 'Upload Privacy & Consent form' },
+        { id: 'l_s_fintrac', label: 'Complete Fintrac' },
+        { id: 'l_s_disc', label: 'Disclosure of Remuneration' },
+        { id: 'l_s_dep_pct', label: 'Deposit %', field: 'text' },
+        { id: 'l_s_dep_amt', label: 'Deposit Amount', field: 'number' },
+      ]},
+      { name: 'Home Info', items: [
+        { id: 'l_h_mls', label: 'MLS #', field: 'text' },
+        { id: 'l_h_bldg', label: 'Building Name', field: 'text' },
+        { id: 'l_h_year', label: 'Year Built', field: 'text' },
+        { id: 'l_h_bed', label: 'Bedrooms', field: 'number' },
+        { id: 'l_h_bath', label: 'Bathroom', field: 'number' },
+        { id: 'l_h_lot', label: 'Lot SF', field: 'text' },
+        { id: 'l_h_int', label: 'Interior SF', field: 'text' },
+        { id: 'l_h_sold', label: 'Sold Price', field: 'number' },
+        { id: 'l_h_pid', label: 'PID #', field: 'text' },
+        { id: 'l_h_legal_desc', label: 'Legal Description', field: 'text' },
+        { id: 'l_h_strata', label: 'Strata Plan', field: 'text' },
+        { id: 'l_h_strata_lot', label: 'Strata Lot #', field: 'text' },
+        { id: 'l_h_pull_title', label: 'Pull Title + Strata Plan' },
+        { id: 'l_h_pull_common', label: 'Pull Common Title' },
+        { id: 'l_h_units', label: 'Total Units in Building', field: 'number' },
+        { id: 'l_h_floors', label: 'Total Floors', field: 'number' },
+        { id: 'l_h_park', label: 'Parking Stall(s)', field: 'text' },
+        { id: 'l_h_storage', label: 'Storage', field: 'text' },
+        { id: 'l_h_pets', label: 'Pets Allowed?', field: 'text' },
+        { id: 'l_h_rentals', label: 'Rentals Allowed?', field: 'text' },
+        { id: 'l_h_gross', label: 'Gross Tax', field: 'number' },
+        { id: 'l_h_taxyear', label: 'Tax Year', field: 'text' },
+        { id: 'l_h_zoning', label: 'Zoning', field: 'text' },
+        { id: 'l_h_ac', label: 'AC' },
+        { id: 'l_h_heat', label: 'Heating Type', field: 'text' },
+        { id: 'l_h_amen', label: 'Amenities', field: 'text' },
+        { id: 'l_h_crf', label: 'Total Contingency Reserve Fund', field: 'number' },
+        { id: 'l_h_water', label: 'Water Deductible', field: 'text' },
+        { id: 'l_h_levies_recent', label: 'Any recent Levies in last 12 months', field: 'text' },
+        { id: 'l_h_levies_up', label: 'Any upcoming Levies due?', field: 'text' },
+      ]},
+      { name: 'Pre-Listing Checklist', items: [
+        { id: 'l_p_fub', label: 'Add to FUB' },
+        { id: 'l_p_paragon', label: 'Set up Paragon Comparisons' },
+        { id: 'l_p_webform', label: 'Create Webform transaction' },
+        { id: 'l_p_id', label: 'Collect ID (Drivers License)' },
+        { id: 'l_p_disclosure', label: 'Send Property Disclosure Statement' },
+        { id: 'l_p_agreement', label: 'Send Listing Agreement' },
+        { id: 'l_p_prev', label: 'Pull Previous Listings' },
+        { id: 'l_p_strata', label: 'Order 2 Years Strata Documents' },
+        { id: 'l_p_media', label: 'Arrange Media' },
+        { id: 'l_p_stage', label: 'Virtual stage if needed' },
+        { id: 'l_p_lockbox', label: 'Set up Lockbox if needed' },
+        { id: 'l_p_data', label: 'Complete Data Input Form' },
+        { id: 'l_p_desc', label: 'Create Listing Description' },
+        { id: 'l_p_uptitle', label: 'Upload Title to Listing' },
+        { id: 'l_p_upcommon', label: 'Upload Common Property to listing' },
+        { id: 'l_p_floor', label: 'Attach Floorplan to listing' },
+        { id: 'l_p_pds', label: 'PDS Digital Copy Upload to Skyslope' },
+      ]},
+      { name: 'Listing Live', items: [
+        { id: 'l_ll_date', label: 'Listing Live Date', field: 'date' },
+        { id: 'l_ll_verify', label: 'Send Listing to Seller to Verify info' },
+        { id: 'l_ll_log', label: 'Add to Listing Log' },
+        { id: 'l_ll_fb', label: 'Create Facebook Ad' },
+        { id: 'l_ll_cl', label: 'Create Craigslist Post' },
+        { id: 'l_ll_yt', label: 'Create Youtube Video' },
+        { id: 'l_ll_ig', label: 'Create Instagram Reel' },
+        { id: 'l_ll_rew', label: 'Boost REW Listing' },
+        { id: 'l_ll_realtor', label: 'Set up clients Realtor.ca notification' },
+        { id: 'l_ll_strata_up', label: 'Upload Strata Doc to Skyslope' },
+        { id: 'l_ll_nlm', label: 'Notebook LM to Review Strata Docs' },
+      ]},
+      { name: 'Openhouse Checklist', items: [
+        { id: 'l_oh_leaf', label: 'Leaf Blower / Pressure Washer' },
+        { id: 'l_oh_mls', label: 'MLS Sheets' },
+        { id: 'l_oh_feature', label: 'Create Feature Sheet' },
+        { id: 'l_oh_bcards', label: 'Business Cards' },
+        { id: 'l_oh_schools', label: 'Print REW Schools Nearby' },
+        { id: 'l_oh_keys', label: 'Collect Key / Fobs' },
+        { id: 'l_oh_shoe', label: 'Remove Shoe Sign' },
+        { id: 'l_oh_gum', label: 'Gum/Mint' },
+        { id: 'l_oh_magnets', label: 'Magnets and Giveaways' },
+        { id: 'l_oh_windex', label: 'Windex and Microfiber Cloth' },
+        { id: 'l_oh_laptop', label: 'Laptop' },
+        { id: 'l_oh_tape', label: 'Tape Measure' },
+        { id: 'l_oh_battery', label: 'Battery Bank' },
+        { id: 'l_oh_candles', label: 'Candles & Lighter' },
+        { id: 'l_oh_eraser', label: 'Mr. Clean Magic Eraser' },
+        { id: 'l_oh_lockh', label: 'Lockbox Door Hanger' },
+        { id: 'l_oh_refresh', label: 'Refreshments' },
+        { id: 'l_oh_signs', label: 'Openhouse signs' },
+        { id: 'l_oh_signdoor', label: 'Openhouse sign for entrance door' },
+        { id: 'l_oh_signin', label: 'Sign in sheets' },
+        { id: 'l_oh_wifi', label: 'Wifi Access', field: 'text' },
+      ]},
+      { name: 'Post Sale Steps', items: [
+        { id: 'l_ps_sticker', label: 'Add Sold Sticker' },
+        { id: 'l_ps_log', label: 'Add Client to Sold log' },
+        { id: 'l_ps_clist', label: 'Add to Client list' },
+        { id: 'l_ps_album', label: 'Add Client Photo to Client Album' },
+        { id: 'l_ps_fub', label: 'Update FUB Status' },
+        { id: 'l_ps_paragon', label: 'Set Paragon Search of Nearby Homes' },
+      ]},
+      { name: 'Other Realtor Info', items: [
+        { id: 'l_or_brok', label: 'Brokerage', field: 'text' },
+        { id: 'l_or_phone', label: 'Phone', field: 'text' },
+        { id: 'l_or_email', label: 'Email', field: 'text' },
+      ]},
+      { name: 'Seller Lawyer Info', items: [
+        { id: 'l_sl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'l_sl_addr', label: 'Address', field: 'text' },
+        { id: 'l_sl_phone', label: 'Phone', field: 'text' },
+        { id: 'l_sl_email', label: 'Email', field: 'text' },
+        { id: 'l_sl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'l_sl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'l_sl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Buyer Lawyer Info', items: [
+        { id: 'l_bl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'l_bl_addr', label: 'Address', field: 'text' },
+        { id: 'l_bl_phone', label: 'Phone', field: 'text' },
+        { id: 'l_bl_email', label: 'Email', field: 'text' },
+        { id: 'l_bl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'l_bl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'l_bl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Commission', items: [
+        { id: 'l_cm_total', label: 'Total', field: 'number' },
+        { id: 'l_cm_buyer', label: 'Buyer Agent', field: 'number' },
+        { id: 'l_cm_listing', label: 'Listing Agent', field: 'number' },
+        { id: 'l_cm_amt', label: 'Amount + GST', field: 'number' },
+      ]},
+    ]
+  },
+  resale: {
+    title: 'Re-Sale Buy',
+    role: 'Buyers Â· Green',
+    accent: '#1a8f4c',
+    accentSoft: '#dff3e6',
+    headClass: '',
+    sections: [
+      { name: 'Client #1', items: [
+        { id: 'r_c1_legal', label: 'Legal Name', field: 'text' },
+        { id: 'r_c1_addr', label: 'Address', field: 'text' },
+        { id: 'r_c1_phone', label: 'Phone', field: 'text' },
+        { id: 'r_c1_email', label: 'Email', field: 'text' },
+        { id: 'r_c1_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'r_c1_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'r_c1_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'r_c1_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Client #2', items: [
+        { id: 'r_c2_legal', label: 'Legal Name', field: 'text' },
+        { id: 'r_c2_addr', label: 'Address', field: 'text' },
+        { id: 'r_c2_phone', label: 'Phone', field: 'text' },
+        { id: 'r_c2_email', label: 'Email', field: 'text' },
+        { id: 'r_c2_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'r_c2_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'r_c2_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'r_c2_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Important Dates', items: [
+        { id: 'r_d_initial', label: 'Initial Viewing', field: 'date' },
+        { id: 'r_d_mls', label: 'MLS Contract Date', field: 'date' },
+        { id: 'r_d_a1', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a2', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a3', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a4', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a5', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a6', label: 'Amendment', field: 'text' },
+      ]},
+      { name: 'Accepted Offer Dates', items: [
+        { id: 'r_o_accepted', label: 'Accepted Offer Date', field: 'date' },
+        { id: 'r_o_inspection', label: 'Inspection Date & Time', field: 'date' },
+        { id: 'r_o_subject', label: 'Subject Removal Date', field: 'date' },
+        { id: 'r_o_completion', label: 'Completion', field: 'date' },
+        { id: 'r_o_adjust', label: 'Adjustment Date', field: 'date' },
+        { id: 'r_o_poss', label: 'Possession/Closing Date', field: 'date' },
+        { id: 'r_o_cal', label: 'Add Dates in Calendar' },
+      ]},
+      { name: 'Skyslope Documents', items: [
+        { id: 'r_s_create', label: 'Create Skyslope File' },
+        { id: 'r_s_cps', label: 'Upload CPS' },
+        { id: 'r_s_dorts', label: 'Send DORTS' },
+        { id: 'r_s_dortsup', label: 'Upload DORTS' },
+        { id: 'r_s_send_pc', label: 'Send Privacy & Consent form' },
+        { id: 'r_s_up_pc', label: 'Upload Privacy & Consent form' },
+        { id: 'r_s_fintrac', label: 'Complete Fintrac' },
+        { id: 'r_s_disc', label: 'Disclosure of Remuneration' },
+        { id: 'r_s_title', label: 'Signed TITLE' },
+        { id: 'r_s_pds', label: 'Signed PDS' },
+        { id: 'r_s_dep_pct', label: 'Deposit %', field: 'text' },
+        { id: 'r_s_dep_amt', label: 'Deposit Amount', field: 'number' },
+      ]},
+      { name: 'Home Info', items: [
+        { id: 'r_h_mls', label: 'MLS #', field: 'text' },
+        { id: 'r_h_year', label: 'Year Built', field: 'text' },
+        { id: 'r_h_bed', label: 'Bedrooms', field: 'number' },
+        { id: 'r_h_bath', label: 'Bathroom', field: 'number' },
+        { id: 'r_h_lot', label: 'Lot SF', field: 'text' },
+        { id: 'r_h_int', label: 'Interior SF', field: 'text' },
+        { id: 'r_h_sold', label: 'Sold Price', field: 'number' },
+        { id: 'r_h_pid', label: 'PID #', field: 'text' },
+        { id: 'r_h_legal_desc', label: 'Legal Description', field: 'text' },
+        { id: 'r_h_strata', label: 'Strata Plan', field: 'text' },
+        { id: 'r_h_strata_lot', label: 'Strata Lot #', field: 'text' },
+        { id: 'r_h_pull_title', label: 'Pull Title + Strata Plan' },
+        { id: 'r_h_pull_common', label: 'Pull Common Title' },
+        { id: 'r_h_units', label: 'Total Units in Building', field: 'number' },
+        { id: 'r_h_floors', label: 'Total Floors', field: 'number' },
+        { id: 'r_h_park', label: 'Parking Stall(s)', field: 'text' },
+        { id: 'r_h_storage', label: 'Storage', field: 'text' },
+        { id: 'r_h_pets', label: 'Pets Allowed?', field: 'text' },
+        { id: 'r_h_rentals', label: 'Rentals Allowed?', field: 'text' },
+        { id: 'r_h_gross', label: 'Gross Tax', field: 'number' },
+        { id: 'r_h_taxyear', label: 'Tax Year', field: 'text' },
+        { id: 'r_h_zoning', label: 'Zoning', field: 'text' },
+        { id: 'r_h_ac', label: 'AC' },
+        { id: 'r_h_heat', label: 'Heating Type', field: 'text' },
+        { id: 'r_h_amen', label: 'Amenities', field: 'text' },
+        { id: 'r_h_crf', label: 'Total Contingency Reserve Fund', field: 'number' },
+        { id: 'r_h_water', label: 'Water Deductible', field: 'text' },
+        { id: 'r_h_levies_recent', label: 'Any recent Levies in last 12 months', field: 'text' },
+        { id: 'r_h_levies_up', label: 'Any upcoming Levies due?', field: 'text' },
+        { id: 'r_h_keys_phone', label: 'Phone', field: 'text' },
+        { id: 'r_h_keys_email', label: 'Email', field: 'text' },
+        { id: 'r_h_home_keys', label: '# of Home Key(s)', field: 'number' },
+        { id: 'r_h_fobs', label: '# of Fob(s)', field: 'number' },
+        { id: 'r_h_garage', label: '# of Garage Door Key(s)', field: 'number' },
+        { id: 'r_h_mail', label: '# of Mail Key(s)', field: 'number' },
+        { id: 'r_h_storage_keys', label: '# of Storage Key(s)', field: 'number' },
+      ]},
+      { name: 'Pre-Offer Setup', items: [
+        { id: 'r_p_fub', label: 'Add to FUB' },
+        { id: 'r_p_webform', label: 'Create Webform transaction' },
+        { id: 'r_p_id', label: 'Collect ID (Drivers License)' },
+        { id: 'r_p_nlm', label: 'Notebook LM to Review Strata Docs' },
+      ]},
+      { name: 'Accepted Offer Subjects', items: [
+        { id: 'r_aos_inspection', label: 'Inspection' },
+        { id: 'r_aos_title', label: 'TITLE SEARCH and PROPERTY DISCLOSURE STATEMENT' },
+        { id: 'r_aos_inspection2', label: 'INSPECTION' },
+        { id: 'r_aos_insurance', label: 'INSURANCE' },
+        { id: 'r_aos_strata', label: 'STRATA DOCUMENT REVIEW' },
+        { id: 'r_aos_clauses', label: 'STANDARD CLAUSES' },
+      ]},
+      { name: 'Post Sale Steps', items: [
+        { id: 'r_ps_log', label: 'Add Client to Sold log' },
+        { id: 'r_ps_clist', label: 'Add to Client list' },
+        { id: 'r_ps_album', label: 'Add Client Photo to Client Album' },
+        { id: 'r_ps_fub', label: 'Update FUB Status' },
+        { id: 'r_ps_paragon', label: 'Set Paragon Search of Nearby Homes' },
+      ]},
+      { name: 'Other Realtor Info', items: [
+        { id: 'r_or_brok', label: 'Brokerage', field: 'text' },
+        { id: 'r_or_phone', label: 'Phone', field: 'text' },
+        { id: 'r_or_email', label: 'Email', field: 'text' },
+      ]},
+      { name: 'Seller Lawyer Info', items: [
+        { id: 'r_sl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'r_sl_phone', label: 'Phone', field: 'text' },
+        { id: 'r_sl_email', label: 'Email', field: 'text' },
+        { id: 'r_sl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'r_sl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'r_sl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Buyer Lawyer Info', items: [
+        { id: 'r_bl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'r_bl_addr', label: 'Address', field: 'text' },
+        { id: 'r_bl_phone', label: 'Phone', field: 'text' },
+        { id: 'r_bl_email', label: 'Email', field: 'text' },
+        { id: 'r_bl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'r_bl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'r_bl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Commission', items: [
+        { id: 'r_cm_total', label: 'Total', field: 'number' },
+        { id: 'r_cm_buyer', label: 'Buyer Agent', field: 'number' },
+        { id: 'r_cm_listing', label: 'Listing Agent', field: 'number' },
+        { id: 'r_cm_amt', label: 'Amount + GST', field: 'number' },
+      ]},
+    ]
+  },
+  presale: {
+    title: 'Pre-Sale',
+    role: 'Pre-Sale Buyers Â· Yellow',
+    accent: '#f1c30c',
+    accentSoft: '#fcf3c8',
+    headClass: 'yellow',
+    sections: [
+      { name: 'Client #1', items: [
+        { id: 'p_c1_legal', label: 'Legal Name', field: 'text' },
+        { id: 'p_c1_addr', label: 'Address', field: 'text' },
+        { id: 'p_c1_phone', label: 'Phone', field: 'text' },
+        { id: 'p_c1_email', label: 'Email', field: 'text' },
+        { id: 'p_c1_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'p_c1_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'p_c1_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'p_c1_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Client #2', items: [
+        { id: 'p_c2_legal', label: 'Legal Name', field: 'text' },
+        { id: 'p_c2_addr', label: 'Address', field: 'text' },
+        { id: 'p_c2_phone', label: 'Phone', field: 'text' },
+        { id: 'p_c2_email', label: 'Email', field: 'text' },
+        { id: 'p_c2_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'p_c2_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'p_c2_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'p_c2_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Important Dates', items: [
+        { id: 'p_d_initial', label: 'Initial Viewing', field: 'date' },
+        { id: 'p_d_a1', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a2', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a3', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a4', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a5', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a6', label: 'Amendment', field: 'text' },
+      ]},
+      { name: 'Accepted Offer Dates', items: [
+        { id: 'p_o_accepted', label: 'Accepted Offer Date', field: 'date' },
+        { id: 'p_o_subject', label: 'Subject Removal Date', field: 'date' },
+        { id: 'p_o_completion', label: 'Completion', field: 'date' },
+        { id: 'p_o_adjust', label: 'Adjustment Date', field: 'date' },
+        { id: 'p_o_poss', label: 'Possession/Closing Date', field: 'date' },
+        { id: 'p_o_cal', label: 'Add Dates in Calendar' },
+      ]},
+      { name: 'Skyslope Documents', items: [
+        { id: 'p_s_create', label: 'Create Skyslope File' },
+        { id: 'p_s_cps', label: 'Upload CPS' },
+        { id: 'p_s_dorts', label: 'Send DORTS' },
+        { id: 'p_s_dortsup', label: 'Upload DORTS' },
+        { id: 'p_s_send_pc', label: 'Send Privacy & Consent form' },
+        { id: 'p_s_up_pc', label: 'Upload Privacy & Consent form' },
+        { id: 'p_s_fintrac', label: 'Complete Fintrac' },
+        { id: 'p_s_disc', label: 'Disclosure of Remuneration' },
+        { id: 'p_s_dep_pct', label: 'Deposit %', field: 'text' },
+        { id: 'p_s_dep_amt', label: 'Deposit Amount', field: 'number' },
+      ]},
+      { name: 'Home Info', items: [
+        { id: 'p_h_mls', label: 'MLS #', field: 'text' },
+        { id: 'p_h_dev', label: 'Developer', field: 'text' },
+        { id: 'p_h_year', label: 'Year Built', field: 'text' },
+        { id: 'p_h_bed', label: 'Bedrooms', field: 'number' },
+        { id: 'p_h_bath', label: 'Bathroom', field: 'number' },
+        { id: 'p_h_lot', label: 'Lot SF', field: 'text' },
+        { id: 'p_h_int', label: 'Interior SF', field: 'text' },
+        { id: 'p_h_sold', label: 'Sold Price', field: 'number' },
+      ]},
+      { name: 'Pre-Sale Setup', items: [
+        { id: 'p_p_fub', label: 'Add to FUB' },
+        { id: 'p_p_webform', label: 'Create Webform transaction' },
+        { id: 'p_p_id', label: 'Collect ID (Drivers License)' },
+      ]},
+      { name: 'Post Sale Steps', items: [
+        { id: 'p_ps_log', label: 'Add Client to Sold log' },
+        { id: 'p_ps_clist', label: 'Add to Client list' },
+        { id: 'p_ps_album', label: 'Add Client Photo to Client Album' },
+        { id: 'p_ps_fub', label: 'Update FUB Status' },
+        { id: 'p_ps_paragon', label: 'Set Paragon Search of Nearby Homes' },
+      ]},
+      { name: 'Other Realtor Info', items: [
+        { id: 'p_or_brok', label: 'Brokerage', field: 'text' },
+        { id: 'p_or_phone', label: 'Phone', field: 'text' },
+        { id: 'p_or_email', label: 'Email', field: 'text' },
+      ]},
+      { name: 'Seller Lawyer Info', items: [
+        { id: 'p_sl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'p_sl_phone', label: 'Phone', field: 'text' },
+        { id: 'p_sl_email', label: 'Email', field: 'text' },
+        { id: 'p_sl_sent_r', label: 'Sent to other Realtor' },
+      ]},
+      { name: 'Buyer Lawyer Info', items: [
+        { id: 'p_bl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'p_bl_addr', label: 'Address', field: 'text' },
+        { id: 'p_bl_phone', label: 'Phone', field: 'text' },
+        { id: 'p_bl_email', label: 'Email', field: 'text' },
+        { id: 'p_bl_sent_r', label: 'Sent to other Realtor' },
+      ]},
+      { name: 'Commission', items: [
+        { id: 'p_cm_total', label: 'Total', field: 'number' },
+        { id: 'p_cm_buyer', label: 'Buyer Agent', field: 'number' },
+        { id: 'p_cm_listing', label: 'Listing Agent', field: 'number' },
+        { id: 'p_cm_amt', label: 'Amount + GST', field: 'number' },
+      ]},
+    ]
+  }
+};
+
+/* ============== State + persistence ============== */
+
+const STORAGE_KEY = 'kris_ong_tx_v1';
+const state = loadState();
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return {
+    checked: {}, notes: {}, values: {},
+    client: {
+      listing: { name: '', address: '' },
+      resale: { name: '', address: '' },
+      presale: { name: '', address: '' },
+    },
+    notesOpen: {},
+  };
+}
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  document.getElementById('updated-stamp').textContent = 'â€” Saved ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+}
+
+/* ============== Render ============== */
+
+const KEY_TO_TYPE = { listing: 'listing', resale: 'resale', presale: 'presale' };
+
+function renderClients() {
+  const wrap = document.getElementById('clients');
+  wrap.innerHTML = '';
+  Object.entries(DATA).forEach(([key, list]) => {
+    const card = document.createElement('div');
+    card.className = 'client-card';
+    card.dataset.type = key;
+    card.style.setProperty('--accent', list.accent);
+    card.style.setProperty('--accent-soft', list.accentSoft);
+    card.innerHTML = `
+      <div class="stripe"></div>
+      <div class="client-body">
+        <div class="client-tag"><span class="dot"></span>${list.role}</div>
+        <h2>${list.title}</h2>
+        <div class="field">
+          <label>Client name</label>
+          <input data-clientfield="name" data-type="${key}" value="${escapeAttr(state.client[key]?.name || '')}" placeholder="Full legal name(s)" />
+        </div>
+        <div class="field">
+          <label>Address</label>
+          <input data-clientfield="address" data-type="${key}" value="${escapeAttr(state.client[key]?.address || '')}" placeholder="Property address" />
+        </div>
+        <div class="progress-row">
+          <div class="progress-bar"><div class="progress-fill" data-progress-fill="${key}"></div></div>
+          <div class="progress-text" data-progress-text="${key}">0/0</div>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+
+function renderLists() {
+  const wrap = document.getElementById('lists');
+  wrap.innerHTML = '';
+  Object.entries(DATA).forEach(([key, list]) => {
+    const col = document.createElement('div');
+    col.className = 'list-col';
+    col.dataset.type = key;
+    col.style.setProperty('--accent', list.accent);
+    col.style.setProperty('--accent-soft', list.accentSoft);
+
+    const totalItems = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+
+    col.innerHTML = `
+      <div class="list-head ${list.headClass}">
+        <div class="title-block">
+          <span class="title">${list.title}</span>
+          <span class="role">${list.role}</span>
+        </div>
+        <span class="count" data-count="${key}">0 / ${totalItems}</span>
+      </div>
+      <div class="list-toolbar">
+        <input class="search" placeholder="Filter itemsâ€¦" data-search="${key}" />
+        <div class="filter">
+          <button class="active" data-filter="${key}" data-mode="all">All</button>
+          <button data-filter="${key}" data-mode="open">Open</button>
+          <button data-filter="${key}" data-mode="done">Done</button>
+        </div>
+      </div>
+      <div class="list-body" data-body="${key}"></div>
+    `;
+    wrap.appendChild(col);
+    renderBody(key);
+  });
+}
+
+function renderBody(key) {
+  const list = DATA[key];
+  const body = document.querySelector(`[data-body="${key}"]`);
+  body.innerHTML = '';
+  list.sections.forEach((sec, sidx) => {
+    const secId = `${key}_sec_${sidx}`;
+    const head = document.createElement('div');
+    head.className = 'section-head';
+    head.dataset.section = secId;
+    const total = sec.items.length;
+    const done = sec.items.filter(it => state.checked[it.id]).length;
+    head.innerHTML = `<span class="lbl">${sec.name}</span><span class="pct" data-secpct="${secId}">${done}/${total}</span>`;
+    body.appendChild(head);
+    // Sort: checked items float to top of section, preserving original order within each group
+    const sorted = sec.items.map((it, i) => ({ it, i }))
+      .sort((a, b) => {
+        const ca = state.checked[a.it.id] ? 0 : 1;
+        const cb = state.checked[b.it.id] ? 0 : 1;
+        if (ca !== cb) return ca - cb;
+        return a.i - b.i;
+      })
+      .map(x => x.it);
+    const sectionItems = sorted;
+    sectionItems.forEach(it => {
+      const itEl = document.createElement('div');
+      itEl.className = 'item';
+      itEl.dataset.id = it.id;
+      itEl.dataset.label = it.label.toLowerCase();
+      if (state.checked[it.id]) itEl.classList.add('done');
+      if (state.notes[it.id]) itEl.classList.add('has-note');
+      if (state.notesOpen[it.id]) itEl.classList.add('note-open');
+      if (it.field) itEl.classList.add('has-value-field');
+
+      const noteIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+
+      const fieldInput = it.field ? renderField(it) : '';
+
+      itEl.innerHTML = `
+        <button class="checkbox" data-check="${it.id}" aria-label="Toggle">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <span class="label" data-checktoggle="${it.id}">${it.label}</span>
+        <button class="note-toggle" data-noteopen="${it.id}" title="Toggle note">${noteIcon}</button>
+        ${fieldInput}
+        <div class="note">
+          <textarea data-note="${it.id}" placeholder="Add a noteâ€¦">${escapeText(state.notes[it.id] || '')}</textarea>
+        </div>
+      `;
+      body.appendChild(itEl);
+    });
+  });
+}
+
+function renderField(it) {
+  const v = state.values[it.id] || '';
+  const type = it.field === 'date' ? 'date' : (it.field === 'number' ? 'number' : 'text');
+  const ph = it.field === 'date' ? '' : (it.field === 'number' ? '0' : 'Enter ' + it.label.toLowerCase());
+  return `<div class="value-input"><input type="${type}" data-value="${it.id}" placeholder="${ph}" value="${escapeAttr(v)}" /></div>`;
+}
+
+function renderSummary() {
+  const wrap = document.getElementById('summary');
+  wrap.innerHTML = '';
+  Object.entries(DATA).forEach(([key, list]) => {
+    const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+    const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => state.checked[it.id]).length, 0);
+    const pct = total ? Math.round((done/total)*100) : 0;
+    const card = document.createElement('div');
+    card.className = 'summary-card';
+    card.dataset.type = key;
+    card.style.setProperty('--accent', list.accent);
+    card.innerHTML = `
+      <div class="head">
+        <span class="lbl"><span class="dot"></span>${list.title}</span>
+        <span class="lbl">${pct}%</span>
+      </div>
+      <div class="num"><span data-summary-done="${key}">${done}</span><span> / ${total} items</span></div>
+      <div class="pbar"><div data-summary-fill="${key}" style="width:${pct}%"></div></div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+
+/* ============== Updates ============== */
+
+function updateProgress(key) {
+  const list = DATA[key];
+  const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+  const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => state.checked[it.id]).length, 0);
+  const pct = total ? (done/total)*100 : 0;
+  const fill = document.querySelector(`[data-progress-fill="${key}"]`);
+  const txt = document.querySelector(`[data-progress-text="${key}"]`);
+  if (fill) fill.style.width = pct + '%';
+  if (txt) txt.textContent = `${done}/${total}`;
+  const count = document.querySelector(`[data-count="${key}"]`);
+  if (count) count.textContent = `${done} / ${total}`;
+  // section pcts
+  list.sections.forEach((sec, sidx) => {
+    const secId = `${key}_sec_${sidx}`;
+    const sd = sec.items.filter(it => state.checked[it.id]).length;
+    const sp = document.querySelector(`[data-secpct="${secId}"]`);
+    if (sp) sp.textContent = `${sd}/${sec.items.length}`;
+  });
+  // summary
+  const sumDone = document.querySelector(`[data-summary-done="${key}"]`);
+  const sumFill = document.querySelector(`[data-summary-fill="${key}"]`);
+  if (sumDone) sumDone.textContent = done;
+  if (sumFill) sumFill.style.width = pct + '%';
+}
+
+/* ============== Events ============== */
+
+document.addEventListener('click', (e) => {
+  const cb = e.target.closest('[data-check]');
+  if (cb) {
+    toggleCheck(cb.dataset.check);
+    return;
+  }
+  const lbl = e.target.closest('[data-checktoggle]');
+  if (lbl) {
+    toggleCheck(lbl.dataset.checktoggle);
+    return;
+  }
+  const nt = e.target.closest('[data-noteopen]');
+  if (nt) {
+    const id = nt.dataset.noteopen;
+    state.notesOpen[id] = !state.notesOpen[id];
+    document.querySelector(`.item[data-id="${id}"]`).classList.toggle('note-open');
+    saveState();
+    return;
+  }
+  const seg = e.target.closest('.seg button');
+  if (seg) {
+    document.querySelectorAll('.seg button').forEach(b => b.classList.remove('active'));
+    seg.classList.add('active');
+    setView(seg.dataset.view);
+    return;
+  }
+  const filt = e.target.closest('[data-filter]');
+  if (filt) {
+    const key = filt.dataset.filter;
+    document.querySelectorAll(`[data-filter="${key}"]`).forEach(b => b.classList.remove('active'));
+    filt.classList.add('active');
+    applyFilter(key, filt.dataset.mode);
+    return;
+  }
+  if (e.target.id === 'print-btn') { window.print(); return; }
+  if (e.target.closest('#print-btn')) { window.print(); return; }
+  if (e.target.id === 'reset-btn' || e.target.closest('#reset-btn')) {
+    document.getElementById('reset-modal').classList.add('open'); return;
+  }
+  if (e.target.id === 'reset-cancel') { document.getElementById('reset-modal').classList.remove('open'); return; }
+  if (e.target.id === 'reset-confirm') {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+});
+
+document.addEventListener('input', (e) => {
+  const note = e.target.closest('[data-note]');
+  if (note) {
+    const id = note.dataset.note;
+    state.notes[id] = note.value;
+    document.querySelector(`.item[data-id="${id}"]`).classList.toggle('has-note', !!note.value.trim());
+    saveState();
+    return;
+  }
+  const v = e.target.closest('[data-value]');
+  if (v) {
+    state.values[v.dataset.value] = v.value;
+    saveState();
+    return;
+  }
+  const cf = e.target.closest('[data-clientfield]');
+  if (cf) {
+    const t = cf.dataset.type;
+    state.client[t] = state.client[t] || {};
+    state.client[t][cf.dataset.clientfield] = cf.value;
+    saveState();
+    return;
+  }
+  const s = e.target.closest('[data-search]');
+  if (s) {
+    applySearch(s.dataset.search, s.value.trim().toLowerCase());
+  }
+});
+
+function toggleCheck(id) {
+  state.checked[id] = !state.checked[id];
+  const el = document.querySelector(`.item[data-id="${id}"]`);
+  if (el) el.classList.toggle('done', !!state.checked[id]);
+  const key = id[0] === 'l' ? 'listing' : id[0] === 'r' ? 'resale' : 'presale';
+  updateProgress(key);
+  saveState();
+  // FLIP-style reorder: snapshot current positions, re-render, then animate from old â†’ new
+  reorderWithAnimation(key, id);
+}
+
+function reorderWithAnimation(key, changedId) {
+  const body = document.querySelector(`[data-body="${key}"]`);
+  if (!body) return;
+  // capture old positions of all items in this list
+  const oldRects = new Map();
+  body.querySelectorAll('.item').forEach(el => {
+    oldRects.set(el.dataset.id, el.getBoundingClientRect());
+  });
+  // remember which items had their note expanded (preserved by state.notesOpen)
+  // and preserve search/filter state by re-applying after render
+  const search = document.querySelector(`[data-search="${key}"]`);
+  const activeFilter = document.querySelector(`[data-filter="${key}"].active`);
+  renderBody(key);
+  if (search && search.value) applySearch(key, search.value.trim().toLowerCase());
+  if (activeFilter) applyFilter(key, activeFilter.dataset.mode);
+  // animate: for each item that existed before, translate from old â†’ new
+  body.querySelectorAll('.item').forEach(el => {
+    const id = el.dataset.id;
+    const oldR = oldRects.get(id);
+    if (!oldR) return;
+    const newR = el.getBoundingClientRect();
+    const dx = oldR.left - newR.left;
+    const dy = oldR.top - newR.top;
+    if (Math.abs(dy) < 1 && Math.abs(dx) < 1) return;
+    el.style.transition = 'none';
+    el.style.transform = `translate(${dx}px, ${dy}px)`;
+    if (id === changedId) el.style.zIndex = '2';
+    requestAnimationFrame(() => {
+      el.style.transition = 'transform .42s cubic-bezier(.2,.7,.2,1)';
+      el.style.transform = '';
+      setTimeout(() => {
+        el.style.transition = '';
+        el.style.transform = '';
+        el.style.zIndex = '';
+      }, 460);
+    });
+  });
+}
+
+function setView(view) {
+  const cols = document.querySelectorAll('.list-col');
+  const cards = document.querySelectorAll('.client-card');
+  const sums = document.querySelectorAll('.summary-card');
+  const lists = document.getElementById('lists');
+  const summary = document.getElementById('summary');
+  if (view === 'all') {
+    lists.classList.remove('single');
+    summary.classList.remove('single');
+    cols.forEach(c => c.classList.remove('hidden'));
+    cards.forEach(c => c.classList.remove('hidden'));
+    sums.forEach(c => c.classList.remove('hidden'));
+  } else {
+    lists.classList.add('single');
+    summary.classList.add('single');
+    cols.forEach(c => c.classList.toggle('hidden', c.dataset.type !== view));
+    cards.forEach(c => c.classList.toggle('hidden', c.dataset.type !== view));
+    sums.forEach(c => c.classList.toggle('hidden', c.dataset.type !== view));
+  }
+}
+
+function applyFilter(key, mode) {
+  const items = document.querySelectorAll(`[data-body="${key}"] .item`);
+  items.forEach(it => {
+    const isDone = it.classList.contains('done');
+    let show = true;
+    if (mode === 'open') show = !isDone;
+    if (mode === 'done') show = isDone;
+    it.style.display = show ? '' : 'none';
+  });
+}
+
+function applySearch(key, q) {
+  const items = document.querySelectorAll(`[data-body="${key}"] .item`);
+  items.forEach(it => {
+    if (!q) { it.style.display = ''; return; }
+    const match = it.dataset.label.includes(q);
+    it.style.display = match ? '' : 'none';
+  });
+}
+
+/* ============== Helpers ============== */
+
+function escapeAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+function escapeText(s) { return String(s).replace(/</g, '&lt;'); }
+
+/* ============== Boot ============== */
+
+renderClients();
+renderLists();
+renderSummary();
+Object.keys(DATA).forEach(updateProgress);
+</script>
+</body>
+</html>
