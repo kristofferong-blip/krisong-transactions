@@ -1,0 +1,3546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style data-omelette-injected>html,body{background:transparent}</style><script data-omelette-injected>(()=>{var j=[];var x=false;var S=30000;var f=3000;document.addEventListener("DOMContentLoaded",()=>{const H=window.Babel;const G="om-src-id";if(H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[G])){H.registerPlugin(G,({types:Y})=>({visitor:{JSXOpeningElement(U,Q){const J=U.node;if(J.name&&J.name.type==="JSXMemberExpression")return;for(let V=0;V<J.attributes.length;V++){const L=J.attributes[V];if(L.type==="JSXAttribute"&&L.name&&L.name.name==="data-om-id")return}const W=Q.file&&Q.file.opts&&Q.file.opts.filename||"?";const Z=J.loc&&J.loc.start;const z=`jsx:${W}:${J.start??0}:${Z?Z.line:0}:${Z?Z.column+1:0}`;J.attributes.push(Y.jsxAttribute(Y.jsxIdentifier("data-om-id"),Y.stringLiteral(z)))}}}))}const k="om-text-extract";let A=false;if(x&&H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[k])){const Y=window.React;if(Y&&Y.useSyncExternalStore&&Y.createElement){A=true;const U={};const Q=new Set;let J=0;window.__omTextO=U;window.__omTextSet=(z)=>{for(const V in z){const L=z[V];if(L==null)delete U[V];else U[V]=L}J++;Q.forEach((V)=>V())};const W=(z)=>{Q.add(z);return()=>Q.delete(z)};const Z=()=>J;window.__OmT=function z(V){Y.useSyncExternalStore(W,Z,Z);return Y.createElement("span",{"data-om-text":V.i,className:"__om-t"},V.i in U?U[V.i]:V.children)};H.registerPlugin(k,({types:z})=>{const V={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const L={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const _=($,C)=>z.logicalExpression("??",z.memberExpression(z.logicalExpression("||",z.memberExpression(z.identifier("window"),z.identifier("__omTextO")),z.objectExpression([])),z.stringLiteral($),true),C);const E=($)=>$.file&&$.file.opts&&$.file.opts.filename||"?";const B=($)=>$.file&&$.file.code||"";const b=($,C)=>{const X=(F)=>F&&F.start!=null&&F.end!=null&&(F.type==="StringLiteral"||F.type==="TemplateLiteral"&&F.expressions.length===0)?[F.start,F.end]:null;const N=X(C);if(N)return N;if(C&&C.type==="Identifier"){const F=$.scope.getBinding(C.name);if(F&&F.constant&&F.path.node.type==="VariableDeclarator"){return X(F.path.node.init)}}return null};const m=($,C,X)=>{const N=$.node;let F=false;const w=(K,q)=>{F=true;return z.jsxElement(z.jsxOpeningElement(z.jsxIdentifier("__OmT"),[z.jsxAttribute(z.jsxIdentifier("i"),z.stringLiteral(K))],false),z.jsxClosingElement(z.jsxIdentifier("__OmT")),[q],false)};const D=N.children.map((K)=>{if(K.type==="JSXText"){if(K.start==null||K.end==null)return K;const q=X.slice(K.start,K.end);const M=q.length-q.trimStart().length;const R=q.length-q.trimEnd().length;if(M+R>=q.length)return K;return w(`txt:${C}:${K.start+M}:${K.end-R}`,K)}if(K.type==="JSXExpressionContainer"){const q=b($,K.expression);if(q)return w(`str:${C}:${q[0]}:${q[1]}`,K)}return K});if(F)N.children=D};return{visitor:{JSXOpeningElement($,C){const X=$.node;const N=E(C);const F={};for(let w=0;w<X.attributes.length;w++){const D=X.attributes[w];if(D.type!=="JSXAttribute"||!D.name)continue;const K=D.name.name;if(!L[K])continue;if(!D.value||D.value.type!=="StringLiteral")continue;if(D.value.start==null||D.value.end==null)continue;const q=`txt:${N}:${D.value.start}:${D.value.end}`;F[K]=q;D.value=z.jsxExpressionContainer(_(q,z.stringLiteral(D.value.value)))}if(Object.keys(F).length){X.attributes.push(z.jsxAttribute(z.jsxIdentifier("data-om-text-attrs"),z.stringLiteral(JSON.stringify(F))))}},JSXElement($,C){const X=$.node.openingElement;const N=X&&X.name&&X.name.name;if(N==="__OmT")return;if(typeof N==="string"&&V[N])return;m($,E(C),B(C))},JSXFragment($,C){m($,E(C),B(C))}}}})}}const u=A?["transform-react-jsx-source",G,k]:["transform-react-jsx-source",G];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((Y,U)=>{const Q=Y.getAttribute("data-plugins")||"";const J=u.filter((W)=>Q.indexOf(W)<0);if(J.length){Y.setAttribute("data-plugins",Q?`${Q},${J.join(",")}`:J.join(","))}if(!Y.hasAttribute("data-filename")){Y.setAttribute("data-filename",Y.getAttribute("src")||`inline-${U}`)}})});var y=window.parent;if(y&&y!==window){const H=(Q,J)=>{try{y.postMessage({__omelette_log:true,type:Q,data:J},"*")}catch{}};["log","warn","error"].forEach((Q)=>{const J=console[Q];console[Q]=(...W)=>{const Z=W.map((z)=>{try{return typeof z==="object"?JSON.stringify(z):String(z)}catch{try{return String(z)}catch{return"[unstringifiable]"}}}).join(" ");H(Q,Z);J.apply(console,W)}});window.addEventListener("error",(Q)=>{const J=Q.target;if(J&&J!==window&&J.tagName){const W=J.src||J.href||"";H("resource_error",`${J.tagName} failed to load: ${W}`)}else{H("error",`${Q.message||"Unknown error"} at ${Q.filename||"?"}:${Q.lineno||0}:${Q.colno||0}`)}},true);window.addEventListener("unhandledrejection",(Q)=>{const J=Q.reason;const W=J instanceof Error?`${J.message} ${J.stack}`:String(J);H("error",`Unhandled rejection: ${W}`)});const G=()=>{try{y.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(document.readyState==="complete")G();else window.addEventListener("load",G);if(window.ResizeObserver)new ResizeObserver(G).observe(document.documentElement);const k={};let A=0;window.claude={complete(Q){return new Promise((J,W)=>{if(!j.length){W(new Error("claude.complete: no parent origin"));return}const Z=`c${++A}`;const z=()=>setTimeout(()=>{delete k[Z];W(new Error(`claude.complete: no data for ${S/1000}s`))},S);const V=z();k[Z]={resolve:J,reject:W,text:"",t:V,arm:z};try{for(const L of j){y.postMessage({__om_api:true,id:Z,body:Q},L)}}catch(L){clearTimeout(V);delete k[Z];W(L)}})}};const u={};let Y=0;window.omelette={writeFile:(Q,J)=>new Promise((W,Z)=>{if(!j.length){W();return}const z=`f${++Y}`;const V=setTimeout(()=>{delete u[z];W()},f);u[z]={resolve:W,reject:Z,t:V};try{for(const L of j){y.postMessage({__om_file:true,id:z,op:"write",path:Q,content:J},L)}}catch{clearTimeout(V);delete u[z];W()}})};const U=(Q)=>{try{return JSON.stringify(Q)}catch{return JSON.stringify(String(Q))}};window.addEventListener("message",(Q)=>{if(j.indexOf(Q.origin)<0)return;if(Q.source!==y)return;const J=Q.data;if(!J)return;if(J.__om_file_r){const z=u[J.id];if(!z)return;clearTimeout(z.t);delete u[J.id];if(J.ok)z.resolve();else z.reject(new Error(J.error||"write failed"));return}if(J.__om_api_r){const z=k[J.id];if(!z)return;if(J.error!=null){clearTimeout(z.t);delete k[J.id];z.reject(new Error(J.error));return}if(J.chunk!=null){clearTimeout(z.t);z.t=z.arm();z.text+=J.chunk;return}if(J.done){clearTimeout(z.t);delete k[J.id];z.resolve(J.text!=null?J.text:z.text);return}return}if(!J.__om_eval)return;const W=J;const Z=(z)=>{Q.source.postMessage({...z,__om_eval_r:1,id:W.id},Q.origin)};try{const z=(0,eval)(W.code);if(z&&typeof z.then==="function"){z.then((V)=>Z({ok:1,v:U(V)}),(V)=>Z({ok:0,e:String(V)}))}else{Z({ok:1,v:U(z)})}}catch(z){Z({ok:0,e:String(z)})}})}})();
+</script>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Transaction Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f1;
+    --surface: #ffffff;
+    --ink: #181715;
+    --ink-2: #4a4842;
+    --ink-3: #8a877f;
+    --line: #e6e2d9;
+    --line-2: #ddd8cc;
+    --listing: #d63a2f;     /* red â sellers */
+    --listing-soft: #fde6e3;
+    --resale: #1a8f4c;      /* green â buyers */
+    --resale-soft: #dff3e6;
+    --presale: #f1c30c;     /* yellow â pre-sale */
+    --presale-soft: #fcf3c8;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  input, textarea { font-family: inherit; }
+
+  /* ===== App shell ===== */
+  .app {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 28px 32px 80px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .brand h1 {
+    margin: 0;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+  }
+  .brand .sub {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-3);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .seg {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .seg button {
+    padding: 7px 14px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition: background .15s, color .15s;
+  }
+  .seg button.active {
+    background: var(--ink);
+    color: #fff;
+  }
+  .seg button:hover:not(.active) { color: var(--ink); }
+  .icon-btn {
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-2);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--ink-2);
+    transition: background .15s;
+  }
+  .icon-btn:hover { background: #f0ece2; }
+
+  /* ===== Client header card ===== */
+  .clients {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .client-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .client-card .stripe {
+    height: 6px;
+    background: var(--accent);
+  }
+  .client-card.collapsed { display: none; }
+  .client-body {
+    padding: 16px 18px 18px;
+  }
+  .client-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  .client-tag .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  }
+  .client-card h2 {
+    margin: 0 0 14px;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.005em;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 10px;
+  }
+  .field label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  .field input {
+    border: none;
+    border-bottom: 1px solid var(--line-2);
+    background: transparent;
+    padding: 4px 0 6px;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .15s;
+  }
+  .field input:focus { border-color: var(--accent); }
+
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line-2);
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width .25s ease;
+  }
+  .progress-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-2);
+    min-width: 56px;
+    text-align: right;
+  }
+
+  /* ===== Lists wrapper ===== */
+  .lists {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .lists.single { grid-template-columns: 1fr; max-width: 920px; margin: 0 auto; }
+
+  .list-col {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .list-col.hidden { display: none; }
+
+  .list-head {
+    padding: 14px 18px;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .list-head.yellow { color: #2a2300; }
+  .list-head .title-block {
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .list-head .title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .list-head .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    opacity: 0.85;
+  }
+  .list-head .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: rgba(0,0,0,0.18);
+    padding: 4px 9px;
+    border-radius: 999px;
+  }
+  .list-head.yellow .count { background: rgba(0,0,0,0.1); }
+
+  .list-toolbar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: #fbfaf6;
+  }
+  .list-toolbar .filter {
+    display: inline-flex;
+    border: 1px solid var(--line-2);
+    border-radius: 7px;
+    padding: 2px;
+  }
+  .list-toolbar .filter button {
+    padding: 4px 10px;
+    font-size: 11.5px;
+    font-weight: 500;
+    border-radius: 5px;
+    color: var(--ink-3);
+  }
+  .list-toolbar .filter button.active {
+    background: var(--ink);
+    color: #fff;
+  }
+  .list-toolbar .search {
+    flex: 1;
+    border: 1px solid var(--line-2);
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 12px;
+    background: #fff;
+    outline: none;
+  }
+  .list-toolbar .search:focus { border-color: var(--ink-3); }
+  .list-toolbar .collapse-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 5px 9px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: #fff;
+    border: 1px solid var(--line-2);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background .12s, color .12s, border-color .12s;
+  }
+  .list-toolbar .collapse-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .list-body {
+    padding: 6px 0 12px;
+  }
+
+  .section-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px 12px;
+    margin-top: 6px;
+    background: var(--sec-bg, transparent);
+    border-left: 4px solid var(--sec-accent, transparent);
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+  }
+  .section-head:hover { filter: brightness(0.97); }
+  .section-head .lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sec-accent, var(--ink));
+    font-weight: 800;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-head .caret {
+    width: 14px; height: 14px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--sec-accent, var(--ink-2));
+    transition: transform .2s ease;
+    flex-shrink: 0;
+  }
+  .section-head.collapsed .caret { transform: rotate(-90deg); }
+  /* hide items belonging to a collapsed section */
+  .item.sec-collapsed { display: none !important; }
+  /* Items inside a section get a subtle tinted background too */
+  .item.sec-tinted {
+    background: var(--sec-bg-soft, transparent);
+  }
+  .item.sec-tinted:hover { background: var(--sec-bg, #fbfaf5); }
+  .section-head .pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-3);
+  }
+  .section-head .pct-wrap { display: inline-flex; align-items: center; gap: 10px; }
+  .pending-badge {
+    display: inline-flex; align-items: center;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(220, 38, 38, 0.12);
+    color: #b91c1c;
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-family: 'Inter', sans-serif;
+    text-transform: none;
+  }
+  .scan-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 9px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--accent-soft);
+    transition: background .12s, color .12s;
+  }
+  .scan-btn:hover { background: var(--accent); color: #fff; }
+  .scan-btn.busy { opacity: 0.6; pointer-events: none; }
+  .scan-toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--ink); color: #fff;
+    padding: 12px 16px; border-radius: 10px;
+    font-size: 13px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 100;
+    max-width: 320px;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .2s, transform .2s;
+  }
+  .scan-toast.show { opacity: 1; transform: translateY(0); }
+  .scan-toast.error { background: var(--listing); }
+
+  /* License scan modal */
+  .scan-modal {
+    position: fixed; inset: 0; background: rgba(20,18,15,0.55);
+    display: none; align-items: center; justify-content: center; z-index: 60;
+    padding: 20px;
+  }
+  .scan-modal.open { display: flex; }
+  .scan-box {
+    background: #fff; border-radius: 16px; padding: 22px 24px 20px;
+    width: 100%; max-width: 520px; border: 1px solid var(--line);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  }
+  .scan-box h3 {
+    margin: 0 0 4px;
+    font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 26px;
+  }
+  .scan-box p.sub { margin: 0 0 16px; color: var(--ink-2); font-size: 13px; }
+  .scan-drop {
+    border: 2px dashed var(--line-2);
+    border-radius: 12px;
+    padding: 28px 18px;
+    text-align: center;
+    background: #fbfaf6;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    outline: none;
+  }
+  .scan-drop:hover, .scan-drop:focus, .scan-drop.dragover {
+    border-color: var(--ink);
+    background: #f5f2ea;
+  }
+  .scan-drop .pile {
+    width: 44px; height: 44px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: #f0ebe0;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink-2);
+  }
+  .scan-drop strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .scan-drop span.hint { display: block; font-size: 12.5px; color: var(--ink-3); }
+  .scan-drop kbd {
+    font-family: 'JetBrains Mono', monospace;
+    background: #fff; border: 1px solid var(--line-2);
+    padding: 1px 6px; border-radius: 4px; font-size: 11px; color: var(--ink-2);
+  }
+  .scan-preview {
+    margin-top: 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    position: relative;
+  }
+  .scan-preview.show { display: block; }
+  .scan-preview img { width: 100%; display: block; max-height: 320px; object-fit: contain; background: #1a1a1a; }
+  .scan-actions {
+    display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 16px;
+  }
+  .scan-actions .left { color: var(--ink-3); font-size: 12px; }
+  .scan-actions button {
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    border: 1px solid var(--line-2); background: #fff; cursor: pointer;
+  }
+  .scan-actions button.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .scan-actions button.primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .scan-actions button.primary.busy { background: var(--ink); }
+  .scan-actions button.primary.busy::after {
+    content: ''; display: inline-block; width: 10px; height: 10px;
+    margin-left: 8px; border: 2px solid #fff; border-top-color: transparent;
+    border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: -1px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ===== Custom date picker ===== */
+  .date-field input[data-datepicker] {
+    cursor: pointer;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a877f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") no-repeat right 8px center;
+    padding-right: 30px;
+  }
+  .datepicker-pop {
+    position: fixed;
+    z-index: 200;
+    background: #1f1d1a;
+    color: #f5f1e8;
+    border: 1px solid #2c2a26;
+    border-radius: 12px;
+    padding: 14px;
+    width: 290px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+  }
+  .datepicker-pop .dp-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+  .datepicker-pop .dp-title {
+    font-weight: 600;
+    font-size: 14.5px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    flex: 1;
+  }
+  .datepicker-pop .dp-title:hover { background: #2c2a26; }
+  .datepicker-pop .dp-nav {
+    display: inline-flex; gap: 2px;
+  }
+  .datepicker-pop .dp-nav button {
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    background: transparent;
+    color: #c9c4b8;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .datepicker-pop .dp-nav button:hover { background: #2c2a26; color: #fff; }
+  .datepicker-pop .dp-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+  .datepicker-pop .dp-dow {
+    font-size: 11px;
+    text-align: center;
+    color: #8a877f;
+    padding: 4px 0;
+    text-transform: none;
+    font-weight: 500;
+  }
+  .datepicker-pop .dp-day {
+    height: 32px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: background .12s, color .12s, border-color .12s;
+  }
+  .datepicker-pop .dp-day:hover { background: #2c2a26; }
+  .datepicker-pop .dp-day.dp-other { color: #4a4842; }
+  .datepicker-pop .dp-day.dp-today { border-color: #d97706; color: #ffb04d; font-weight: 700; }
+  .datepicker-pop .dp-day.dp-selected {
+    background: #d97706; color: #fff; border-color: #d97706;
+  }
+  .datepicker-pop .dp-day.dp-selected.dp-today { color: #fff; }
+  .datepicker-pop .dp-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #2c2a26;
+  }
+  .datepicker-pop .dp-foot button {
+    background: transparent;
+    color: #c9c4b8;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+  .datepicker-pop .dp-foot button:hover { background: #2c2a26; color: #fff; }
+  .datepicker-pop .dp-foot .dp-clear { color: #d97706; }
+
+  /* Year/month grid alt views */
+  .datepicker-pop .dp-mgrid, .datepicker-pop .dp-ygrid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+  }
+  .datepicker-pop .dp-mcell, .datepicker-pop .dp-ycell {
+    padding: 12px 6px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+  }
+  .datepicker-pop .dp-mcell:hover, .datepicker-pop .dp-ycell:hover { background: #2c2a26; }
+  .datepicker-pop .dp-mcell.dp-current, .datepicker-pop .dp-ycell.dp-current {
+    border-color: #d97706; color: #ffb04d;
+  }
+  .datepicker-pop .dp-mcell.dp-selected, .datepicker-pop .dp-ycell.dp-selected {
+    background: #d97706; color: #fff; border-color: #d97706;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    gap: 10px;
+    align-items: start;
+    padding: 7px 18px;
+    border-bottom: 1px solid #f3efe5;
+    transition: background .12s;
+    position: relative;
+  }
+  .item:hover { background: #fbfaf5; }
+  .item.done .label { color: var(--ink-3); text-decoration: line-through; text-decoration-thickness: 1px; text-decoration-color: var(--accent); }
+  /* Don't cross out labels for rows with a value field â the label is the field's name and must stay readable */
+  .item.done.has-value-field .label { color: var(--ink-2); text-decoration: none; }
+
+  /* Needs-attention â only the empty input box gets the red tint, not the whole row */
+  .item.needs-attention .value-input input {
+    border-color: rgba(220, 38, 38, 0.55);
+    background-color: rgba(220, 38, 38, 0.05);
+  }
+  .item.needs-attention .value-input input:focus {
+    border-color: rgba(220, 38, 38, 0.9);
+    background-color: #fff;
+  }
+  .item.done .value-input input,
+  .item:not(.needs-attention) .value-input input {
+    border-color: var(--line-2);
+    background-color: #fff;
+  }
+  /* Fields where typed date couldn't parse */
+  .value-input input.date-invalid {
+    border-color: #dc2626 !important;
+    background-color: rgba(220, 38, 38, 0.1) !important;
+  }
+
+  .checkbox {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--line-2);
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    margin-top: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: background .12s, border-color .12s, color .12s;
+    flex-shrink: 0;
+  }
+  .checkbox:hover { border-color: var(--accent); }
+  .item.done .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .list-head.yellow ~ .list-body .item.done .checkbox { color: #2a2300; }
+
+  .label {
+    font-size: 13.5px;
+    color: var(--ink);
+    padding-top: 1px;
+    cursor: pointer;
+  }
+
+  .item .note-toggle {
+    width: 22px; height: 22px;
+    border-radius: 5px;
+    color: var(--ink-3);
+    display: inline-flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity .12s, background .12s;
+  }
+  .item:hover .note-toggle, .item.has-note .note-toggle { opacity: 1; }
+  .item .note-toggle:hover { background: var(--line); color: var(--ink); }
+  .item.has-note .note-toggle { color: var(--accent); }
+
+  .note {
+    grid-column: 2 / 4;
+    margin-top: 4px;
+    border-left: 2px solid var(--accent-soft);
+    padding: 4px 8px;
+    background: #fbfaf5;
+    border-radius: 0 5px 5px 0;
+    display: none;
+  }
+  .item.note-open .note { display: block; }
+  .note textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    resize: vertical;
+    min-height: 32px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    outline: none;
+    padding: 2px 0;
+  }
+  .note textarea::placeholder { color: var(--ink-3); }
+
+  /* Date / number / text inline value */
+  .value-input {
+    grid-column: 2 / 4;
+    margin-top: 2px;
+    display: none;
+  }
+  .item.has-value-field .value-input { display: block; }
+  .value-input input {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12.5px;
+    background: #fff;
+    outline: none;
+    width: 100%;
+    max-width: 240px;
+    color: var(--ink);
+  }
+  .value-input input:focus { border-color: var(--accent); }
+
+  .blank-row {
+    height: 14px;
+    border-bottom: 1px solid #f3efe5;
+  }
+
+  /* ===== Footer summary ===== */
+  .summary {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .summary.single { grid-template-columns: 1fr; max-width: 920px; margin-left: auto; margin-right: auto; }
+  .summary-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .summary-card.hidden { display: none; }
+  .summary-card .head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .summary-card .head .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .summary-card .head .lbl .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  }
+  .summary-card .num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    line-height: 1;
+  }
+  .summary-card .num span { color: var(--ink-3); font-size: 18px; }
+  .summary-card .pbar {
+    height: 6px; background: var(--line); border-radius: 3px; margin-top: 12px; overflow: hidden;
+  }
+  .summary-card .pbar > div { height: 100%; background: var(--accent); transition: width .25s; }
+
+  /* ===== Reset confirm ===== */
+  .reset-modal {
+    position: fixed; inset: 0; background: rgba(20,18,15,0.4);
+    display: none; align-items: center; justify-content: center; z-index: 50;
+  }
+  .reset-modal.open { display: flex; }
+  .reset-modal .box {
+    background: #fff; border-radius: 14px; padding: 22px 24px; max-width: 380px;
+    border: 1px solid var(--line);
+  }
+  .reset-modal h3 { margin: 0 0 8px; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 22px; }
+  .reset-modal p { margin: 0 0 18px; color: var(--ink-2); font-size: 13px; }
+  .reset-modal .actions { display: flex; justify-content: flex-end; gap: 8px; }
+  .reset-modal button {
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    border: 1px solid var(--line-2); background: #fff;
+  }
+  .reset-modal button.danger { background: var(--listing); border-color: var(--listing); color: #fff; }
+
+  /* Filters by responsive */
+  @media (max-width: 1180px) {
+    .lists, .summary, .clients { grid-template-columns: 1fr; }
+    .list-col.hidden-mobile { display: none; }
+  }
+
+  /* ===== Transaction tabs (switcher) ===== */
+  .tx-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 2px 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+    scrollbar-width: thin;
+  }
+  .tx-tab {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color .15s, background .15s, transform .12s;
+    position: relative;
+    min-width: 180px;
+    max-width: 280px;
+  }
+  .tx-tab:hover { border-color: var(--ink-3); }
+  .tx-tab.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 1px var(--accent) inset;
+  }
+  .tx-tab .swatch {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+  .tx-tab .tab-label {
+    flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-weight: 500; font-size: 13px; color: var(--ink);
+  }
+  .tx-tab .tab-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; color: var(--ink-3);
+    flex-shrink: 0;
+  }
+  .tx-tab.active .tab-pct { color: var(--ink-2); }
+
+  .tx-add {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    border: 1px dashed var(--line-2);
+    border-radius: 10px;
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 500;
+    background: transparent;
+    transition: border-color .15s, color .15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tx-add:hover { border-color: var(--ink); color: var(--ink); }
+
+  .tx-add-menu {
+    position: absolute;
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    z-index: 30;
+    display: none;
+    min-width: 220px;
+  }
+  .tx-add-menu.open { display: block; }
+  .tx-add-menu button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    text-align: left;
+    color: var(--ink);
+    transition: background .12s;
+  }
+  .tx-add-menu button:hover { background: #f3efe5; }
+  .tx-add-menu button .swatch { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ===== Per-transaction toolbar (rename/archive/delete) ===== */
+  .tx-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+  }
+  .tx-bar .meta {
+    display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;
+  }
+  .tx-bar .type-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+  .tx-bar input.tx-name {
+    flex: 1; min-width: 0;
+    border: none; background: transparent;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: var(--ink);
+    outline: none;
+    padding: 2px 0;
+    border-bottom: 1px dashed transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .tx-bar input.tx-name:focus { border-bottom-color: var(--line-2); }
+  .tx-bar .actions {
+    display: flex; gap: 6px;
+  }
+  .tx-bar .actions button {
+    padding: 7px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    background: var(--surface);
+    font-size: 12.5px;
+    color: var(--ink-2);
+    transition: background .12s, color .12s, border-color .12s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tx-bar .actions button:hover { background: #f0ece2; color: var(--ink); }
+  .tx-bar .actions button.danger:hover { background: #fde6e3; color: var(--listing); border-color: var(--listing); }
+
+  /* ===== Dashboard (overview of all transactions) ===== */
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .dash-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
+    border-top: 4px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .dash-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--accent); }
+  .dash-card .head {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+  }
+  .dash-card .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+  .dash-card h3 {
+    margin: 0;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+  }
+  .dash-card .addr {
+    color: var(--ink-3);
+    font-size: 12.5px;
+    margin: 0;
+  }
+  .dash-card .pbar {
+    height: 6px; background: var(--line); border-radius: 3px; overflow: hidden;
+  }
+  .dash-card .pbar > div { height: 100%; background: var(--accent); }
+  .dash-card .stats {
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-2);
+  }
+  .dash-add {
+    border: 1.5px dashed var(--line-2);
+    border-radius: 14px;
+    background: transparent;
+    padding: 30px 20px;
+    color: var(--ink-3);
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color .15s, color .15s, background .15s;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px;
+    min-height: 120px;
+  }
+  .dash-add:hover { border-color: var(--ink); color: var(--ink); background: var(--surface); }
+
+  .dash-section-title {
+    grid-column: 1 / -1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 14px 0 -4px;
+  }
+
+  /* When dashboard is open, hide the active-tx view */
+  body.dashboard-mode #tx-view, body.dashboard-mode .tx-tabs { display: none; }
+  body:not(.dashboard-mode) #dashboard { display: none; }
+  body.dashboard-mode #dashboard { display: grid; }
+
+  /* ===== Sticky transaction bar (premium, redesigned) ===== */
+  .sticky-tx-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 22px;
+    min-height: 64px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%),
+      linear-gradient(90deg, rgba(252,250,244,0.98), rgba(248,244,235,0.98));
+    backdrop-filter: blur(14px) saturate(1.1);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    margin: 0 -18px 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 8px 24px -8px rgba(40, 28, 12, 0.10), 0 2px 0 rgba(0,0,0,0.02);
+  }
+  /* gold hairline accent at the bottom */
+  .sticky-tx-bar::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(180, 138, 70, 0.35) 18%,
+      rgba(180, 138, 70, 0.55) 50%,
+      rgba(180, 138, 70, 0.35) 82%,
+      transparent 100%);
+    pointer-events: none;
+  }
+  .sticky-tx-bar.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Identity cluster: pill + name */
+  .sticky-tx-identity {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+    padding-right: 18px;
+    min-width: 0;
+  }
+  .sticky-tx-pill {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px 4px;
+    border-radius: 4px;
+    color: var(--accent, #d97706);
+    background: linear-gradient(180deg,
+      color-mix(in oklab, var(--accent, #d97706) 6%, transparent),
+      color-mix(in oklab, var(--accent, #d97706) 14%, transparent));
+    border: 1px solid color-mix(in oklab, var(--accent, #d97706) 35%, transparent);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .sticky-tx-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink-1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  /* Vertical hairline divider */
+  .sticky-tx-divider {
+    width: 1px;
+    align-self: center;
+    height: 28px;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.12), transparent);
+    flex-shrink: 0;
+  }
+
+  /* Price block â stacked label above number */
+  .sticky-tx-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 18px;
+    flex-shrink: 0;
+  }
+  .sticky-tx-price[data-empty="true"] { display: none; }
+  .sticky-tx-price .px-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(192, 39, 26, 0.65);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .sticky-tx-price .px-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #a31f14;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  }
+
+  /* Address (de-emphasized, takes flex slack) */
+  .sticky-tx-addr {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--ink-2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 80px;
+    padding: 0 18px;
+    align-self: center;
+    letter-spacing: 0.01em;
+  }
+  .sticky-tx-addr:empty::before {
+    content: 'No address yet';
+    color: var(--ink-3);
+    font-style: italic;
+  }
+
+  /* Countdowns cluster (right side, fixed â never moves) */
+  .sticky-tx-countdowns {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .countdown-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 18px;
+    min-width: 110px;
+    line-height: 1;
+    position: relative;
+    transition: background .4s ease, color .4s ease;
+  }
+  .countdown-chip + .countdown-chip {
+    border-left: 1px solid rgba(0,0,0,0.06);
+  }
+  .countdown-chip .cd-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .countdown-chip .cd-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .countdown-chip .cd-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ink-1);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+    /* Reserved width keeps layout stable across 1, 12, 365 */
+    min-width: 1ch;
+  }
+  .countdown-chip .cd-unit {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    line-height: 1;
+  }
+  .countdown-chip .cd-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-3);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Urgent: gentle color/glow pulse only â no movement */
+  .countdown-chip.urgent .cd-label { color: #a31f14; }
+  .countdown-chip.urgent .cd-num { color: #a31f14; }
+  .countdown-chip.urgent .cd-unit { color: rgba(163, 31, 20, 0.7); }
+  .countdown-chip.urgent {
+    background: linear-gradient(180deg,
+      rgba(192, 39, 26, 0.0),
+      rgba(192, 39, 26, 0.06));
+    animation: cdPulseGlow 2.4s ease-in-out infinite;
+  }
+  @keyframes cdPulseGlow {
+    0%, 100% {
+      background: linear-gradient(180deg, rgba(192,39,26,0.0), rgba(192,39,26,0.06));
+    }
+    50% {
+      background: linear-gradient(180deg, rgba(192,39,26,0.04), rgba(192,39,26,0.14));
+    }
+  }
+  /* Closed (date passed) */
+  .countdown-chip.closed .cd-label { color: #1f7a47; }
+  .countdown-chip.closed .cd-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: #1f7a47;
+  }
+  .countdown-chip.closed {
+    background: linear-gradient(180deg,
+      rgba(34, 139, 79, 0.04),
+      rgba(34, 139, 79, 0.10));
+  }
+  .countdown-chip.closed .cd-check {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1f7a47;
+    color: #fff;
+    text-align: center;
+    line-height: 14px;
+    font-size: 9px;
+    font-weight: 700;
+    margin-left: 4px;
+    transform: translateY(-2px);
+  }
+
+  /* Tiny progress on far right */
+  .sticky-tx-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    padding-left: 18px;
+    border-left: 1px solid rgba(0,0,0,0.06);
+    align-self: center;
+  }
+  .sticky-tx-pbar {
+    width: 80px;
+    height: 4px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .sticky-tx-pbar > div {
+    height: 100%;
+    background: linear-gradient(90deg,
+      var(--accent, #d97706),
+      color-mix(in oklab, var(--accent, #d97706) 70%, #fff));
+    width: 0%;
+    transition: width .35s ease;
+  }
+  .sticky-tx-progress span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-2);
+    min-width: 32px;
+    text-align: right;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+  @media print {
+    .sticky-tx-bar { display: none !important; }
+  }
+  body.dashboard-mode #dash-btn { background: var(--ink); color: #fff; border-color: var(--ink); }
+  #sound-btn.muted { color: var(--ink-3); opacity: 0.55; }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .topbar, .list-toolbar, .top-actions, .icon-btn, .reset-modal { display: none !important; }
+    .lists, .clients, .summary { grid-template-columns: repeat(3, 1fr); page-break-inside: avoid; }
+    .list-col, .client-card { break-inside: avoid; border-color: #aaa; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app" id="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <h1>Transaction Tracker</h1>
+      <span class="sub" id="updated-stamp">â Synced locally</span>
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn" id="sound-btn" title="Toggle sound">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      </button>
+      <button class="icon-btn" id="dash-btn" title="All transactions">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </button>
+      <button class="icon-btn" id="print-btn" title="Print">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Transaction switcher tabs -->
+  <div class="tx-tabs" id="tx-tabs"></div>
+
+  <!-- Single active transaction view -->
+  <div class="tx-view" id="tx-view">
+    <div class="sticky-tx-bar" id="sticky-tx-bar">
+      <div class="sticky-tx-identity">
+        <div class="sticky-tx-pill" data-pill-role></div>
+        <div class="sticky-tx-name" data-pill-name></div>
+      </div>
+      <div class="sticky-tx-divider" data-pill-price-divider></div>
+      <div class="sticky-tx-price" data-pill-price data-empty="true">
+        <div class="px-label">Sold Price</div>
+        <div class="px-value" data-pill-price-value></div>
+      </div>
+      <div class="sticky-tx-divider"></div>
+      <div class="sticky-tx-addr" data-pill-addr></div>
+      <div class="sticky-tx-countdowns" data-pill-countdowns></div>
+      <div class="sticky-tx-progress">
+        <div class="sticky-tx-pbar"><div data-pill-fill></div></div>
+        <span data-pill-pct>0%</span>
+      </div>
+    </div>
+    <div class="clients" id="clients"></div>
+    <div class="lists" id="lists"></div>
+    <div class="summary" id="summary"></div>
+  </div>
+
+  <!-- Dashboard view (all transactions at a glance) -->
+  <div class="dashboard" id="dashboard" hidden></div>
+</div>
+
+<div class="reset-modal" id="reset-modal" hidden>
+  <div class="box">
+    <h3>Reset everything?</h3>
+    <p>This clears all checked items, notes, values, and client info across all three transactions. This cannot be undone.</p>
+    <div class="actions">
+      <button id="reset-cancel">Cancel</button>
+      <button class="danger" id="reset-confirm">Reset all</button>
+    </div>
+  </div>
+</div>
+
+<div class="scan-modal" id="scan-modal">
+  <div class="scan-box">
+    <h3 id="scan-title">Scan driver's license</h3>
+    <p class="sub" id="scan-sub">Paste, drop, or upload a photo and we'll auto-fill the client fields.</p>
+    <div class="scan-drop" id="scan-drop" tabindex="0">
+      <div class="pile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.2"/><path d="M14 10h4M14 14h3"/></svg>
+      </div>
+      <strong>Paste, drop, or click to upload</strong>
+      <span class="hint">Press <kbd>âV</kbd> / <kbd>Ctrl+V</kbd> to paste a copied photo Â· Drag &amp; drop a file Â· Or click to browse</span>
+    </div>
+    <div class="scan-preview" id="scan-preview">
+      <img id="scan-preview-img" alt="License preview" />
+    </div>
+    <div class="scan-actions">
+      <span class="left" id="scan-status"></span>
+      <div style="display:flex; gap:8px;">
+        <button id="scan-cancel">Cancel</button>
+        <button id="scan-go" class="primary" disabled>Extract info</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Data model â three transaction types.
+   Each list has sections; each item has an id, label, and
+   optional `field` (text|date|number) for an inline value.
+   ============================================================ */
+
+const DATA = {
+  listing: {
+    title: 'Listing',
+    role: 'Sellers Â· Red',
+    accent: '#d63a2f',
+    accentSoft: '#fde6e3',
+    headClass: '',
+    sections: [
+      { name: 'Client #1', items: [
+        { id: 'l_c1_legal', label: 'Legal Name', field: 'text' },
+        { id: 'l_c1_addr', label: 'Current Home Address', field: 'text' },
+        { id: 'l_c1_phone', label: 'Phone', field: 'text' },
+        { id: 'l_c1_email', label: 'Email', field: 'text' },
+        { id: 'l_c1_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'l_c1_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'l_c1_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'l_c1_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Client #2', items: [
+        { id: 'l_c2_legal', label: 'Legal Name', field: 'text' },
+        { id: 'l_c2_addr', label: 'Current Home Address', field: 'text' },
+        { id: 'l_c2_phone', label: 'Phone', field: 'text' },
+        { id: 'l_c2_email', label: 'Email', field: 'text' },
+        { id: 'l_c2_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'l_c2_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'l_c2_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'l_c2_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Important Dates', items: [
+        { id: 'l_d_initial', label: 'Initial Viewing', field: 'date' },
+        { id: 'l_d_media', label: 'Media Filming', field: 'date' },
+        { id: 'l_d_lstart', label: 'Listing Start Date', field: 'date' },
+        { id: 'l_d_lexp', label: 'Listing Expiry Date', field: 'date' },
+        { id: 'l_d_open', label: 'Openhouse Dates and Times', field: 'text' },
+        { id: 'l_d_a1', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a2', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a3', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a4', label: 'Amendment', field: 'text' },
+        { id: 'l_d_a5', label: 'Amendment', field: 'text' },
+      ]},
+      { name: 'Accepted Offer Dates', items: [
+        { id: 'l_o_accepted', label: 'Accepted Offer Date', field: 'date' },
+        { id: 'l_o_inspection', label: 'Inspection Date & Time', field: 'date' },
+        { id: 'l_o_subject', label: 'Subject Removal Date', field: 'date' },
+        { id: 'l_o_completion', label: 'Completion', field: 'date' },
+        { id: 'l_o_adjust', label: 'Adjustment Date', field: 'date' },
+        { id: 'l_o_poss', label: 'Possession/Closing Date', field: 'date' },
+        { id: 'l_o_cal', label: 'Add Dates in Calendar' },
+      ]},
+      { name: 'Skyslope Documents', items: [
+        { id: 'l_s_create', label: 'Create Skyslope File' },
+        { id: 'l_s_cps', label: 'Upload CPS' },
+        { id: 'l_s_dorts', label: 'Send DORTS' },
+        { id: 'l_s_dortsup', label: 'Upload DORTS' },
+        { id: 'l_s_send_pc', label: 'Send Privacy & Consent form' },
+        { id: 'l_s_up_pc', label: 'Upload Privacy & Consent form' },
+        { id: 'l_s_fintrac', label: 'Complete Fintrac' },
+        { id: 'l_s_disc', label: 'Disclosure of Remuneration' },
+        { id: 'l_s_dep_pct', label: 'Deposit %', field: 'text' },
+        { id: 'l_s_dep_amt', label: 'Deposit Amount', field: 'number' },
+      ]},
+      { name: 'Home Info', items: [
+        { id: 'l_h_mls', label: 'MLS #', field: 'text' },
+        { id: 'l_h_bldg', label: 'Building Name', field: 'text' },
+        { id: 'l_h_year', label: 'Year Built', field: 'text' },
+        { id: 'l_h_bed', label: 'Bedrooms', field: 'number' },
+        { id: 'l_h_bath', label: 'Bathroom', field: 'number' },
+        { id: 'l_h_lot', label: 'Lot SF', field: 'text' },
+        { id: 'l_h_int', label: 'Interior SF', field: 'text' },
+        { id: 'l_h_sold', label: 'Sold Price', field: 'number' },
+        { id: 'l_h_pid', label: 'PID #', field: 'text' },
+        { id: 'l_h_legal_desc', label: 'Legal Description', field: 'text' },
+        { id: 'l_h_strata', label: 'Strata Plan', field: 'text' },
+        { id: 'l_h_strata_lot', label: 'Strata Lot #', field: 'text' },
+        { id: 'l_h_pull_title', label: 'Pull Title + Strata Plan' },
+        { id: 'l_h_pull_common', label: 'Pull Common Title' },
+        { id: 'l_h_units', label: 'Total Units in Building', field: 'number' },
+        { id: 'l_h_floors', label: 'Total Floors', field: 'number' },
+        { id: 'l_h_park', label: 'Parking Stall(s)', field: 'text' },
+        { id: 'l_h_storage', label: 'Storage', field: 'text' },
+        { id: 'l_h_pets', label: 'Pets Allowed?', field: 'text' },
+        { id: 'l_h_rentals', label: 'Rentals Allowed?', field: 'text' },
+        { id: 'l_h_gross', label: 'Gross Tax', field: 'number' },
+        { id: 'l_h_taxyear', label: 'Tax Year', field: 'text' },
+        { id: 'l_h_zoning', label: 'Zoning', field: 'text' },
+        { id: 'l_h_ac', label: 'AC' },
+        { id: 'l_h_heat', label: 'Heating Type', field: 'text' },
+        { id: 'l_h_amen', label: 'Amenities', field: 'text' },
+        { id: 'l_h_crf', label: 'Total Contingency Reserve Fund', field: 'number' },
+        { id: 'l_h_water', label: 'Water Deductible', field: 'text' },
+        { id: 'l_h_levies_recent', label: 'Any recent Levies in last 12 months', field: 'text' },
+        { id: 'l_h_levies_up', label: 'Any upcoming Levies due?', field: 'text' },
+      ]},
+      { name: 'Pre-Listing Checklist', items: [
+        { id: 'l_p_fub', label: 'Add to FUB' },
+        { id: 'l_p_paragon', label: 'Set up Paragon Comparisons' },
+        { id: 'l_p_webform', label: 'Create Webform transaction' },
+        { id: 'l_p_id', label: 'Collect ID (Drivers License)' },
+        { id: 'l_p_disclosure', label: 'Send Property Disclosure Statement' },
+        { id: 'l_p_agreement', label: 'Send Listing Agreement' },
+        { id: 'l_p_prev', label: 'Pull Previous Listings' },
+        { id: 'l_p_strata', label: 'Order 2 Years Strata Documents' },
+        { id: 'l_p_media', label: 'Arrange Media' },
+        { id: 'l_p_stage', label: 'Virtual stage if needed' },
+        { id: 'l_p_lockbox', label: 'Set up Lockbox if needed' },
+        { id: 'l_p_data', label: 'Complete Data Input Form' },
+        { id: 'l_p_desc', label: 'Create Listing Description' },
+        { id: 'l_p_uptitle', label: 'Upload Title to Listing' },
+        { id: 'l_p_upcommon', label: 'Upload Common Property to listing' },
+        { id: 'l_p_floor', label: 'Attach Floorplan to listing' },
+        { id: 'l_p_pds', label: 'PDS Digital Copy Upload to Skyslope' },
+      ]},
+      { name: 'Listing Live', items: [
+        { id: 'l_ll_date', label: 'Listing Live Date', field: 'date' },
+        { id: 'l_ll_verify', label: 'Send Listing to Seller to Verify info' },
+        { id: 'l_ll_log', label: 'Add to Listing Log' },
+        { id: 'l_ll_fb', label: 'Create Facebook Ad' },
+        { id: 'l_ll_cl', label: 'Create Craigslist Post' },
+        { id: 'l_ll_yt', label: 'Create Youtube Video' },
+        { id: 'l_ll_ig', label: 'Create Instagram Reel' },
+        { id: 'l_ll_rew', label: 'Boost REW Listing' },
+        { id: 'l_ll_realtor', label: 'Set up clients Realtor.ca notification' },
+        { id: 'l_ll_strata_up', label: 'Upload Strata Doc to Skyslope' },
+        { id: 'l_ll_nlm', label: 'Notebook LM to Review Strata Docs' },
+      ]},
+      { name: 'Openhouse Checklist', items: [
+        { id: 'l_oh_leaf', label: 'Leaf Blower / Pressure Washer' },
+        { id: 'l_oh_mls', label: 'MLS Sheets' },
+        { id: 'l_oh_feature', label: 'Create Feature Sheet' },
+        { id: 'l_oh_bcards', label: 'Business Cards' },
+        { id: 'l_oh_schools', label: 'Print REW Schools Nearby' },
+        { id: 'l_oh_keys', label: 'Collect Key / Fobs' },
+        { id: 'l_oh_shoe', label: 'Remove Shoe Sign' },
+        { id: 'l_oh_gum', label: 'Gum/Mint' },
+        { id: 'l_oh_magnets', label: 'Magnets and Giveaways' },
+        { id: 'l_oh_windex', label: 'Windex and Microfiber Cloth' },
+        { id: 'l_oh_laptop', label: 'Laptop' },
+        { id: 'l_oh_tape', label: 'Tape Measure' },
+        { id: 'l_oh_battery', label: 'Battery Bank' },
+        { id: 'l_oh_candles', label: 'Candles & Lighter' },
+        { id: 'l_oh_eraser', label: 'Mr. Clean Magic Eraser' },
+        { id: 'l_oh_lockh', label: 'Lockbox Door Hanger' },
+        { id: 'l_oh_refresh', label: 'Refreshments' },
+        { id: 'l_oh_signs', label: 'Openhouse signs' },
+        { id: 'l_oh_signdoor', label: 'Openhouse sign for entrance door' },
+        { id: 'l_oh_signin', label: 'Sign in sheets' },
+        { id: 'l_oh_wifi', label: 'Wifi Access', field: 'text' },
+      ]},
+      { name: 'Post Sale Steps', items: [
+        { id: 'l_ps_sticker', label: 'Add Sold Sticker' },
+        { id: 'l_ps_log', label: 'Add Client to Sold log' },
+        { id: 'l_ps_clist', label: 'Add to Client list' },
+        { id: 'l_ps_album', label: 'Add Client Photo to Client Album' },
+        { id: 'l_ps_fub', label: 'Update FUB Status' },
+        { id: 'l_ps_paragon', label: 'Set Paragon Search of Nearby Homes' },
+      ]},
+      { name: 'Other Realtor Info', items: [
+        { id: 'l_or_name', label: 'Name', field: 'text' },
+        { id: 'l_or_brok', label: 'Brokerage', field: 'text' },
+        { id: 'l_or_phone', label: 'Phone', field: 'text' },
+        { id: 'l_or_email', label: 'Email', field: 'text' },
+      ]},
+      { name: 'Seller Lawyer Info', items: [
+        { id: 'l_sl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'l_sl_addr', label: 'Address', field: 'text' },
+        { id: 'l_sl_phone', label: 'Phone', field: 'text' },
+        { id: 'l_sl_email', label: 'Email', field: 'text' },
+        { id: 'l_sl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'l_sl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'l_sl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Buyer Lawyer Info', items: [
+        { id: 'l_bl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'l_bl_addr', label: 'Address', field: 'text' },
+        { id: 'l_bl_phone', label: 'Phone', field: 'text' },
+        { id: 'l_bl_email', label: 'Email', field: 'text' },
+        { id: 'l_bl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'l_bl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'l_bl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Commission', items: [
+        { id: 'l_cm_total', label: 'Total', field: 'number' },
+        { id: 'l_cm_buyer', label: 'Buyer Agent', field: 'number' },
+        { id: 'l_cm_listing', label: 'Listing Agent', field: 'number' },
+        { id: 'l_cm_amt', label: 'Amount + GST', field: 'number' },
+      ]},
+    ]
+  },
+  resale: {
+    title: 'Re-Sale Buy',
+    role: 'Buyers Â· Green',
+    accent: '#1a8f4c',
+    accentSoft: '#dff3e6',
+    headClass: '',
+    sections: [
+      { name: 'Client #1', items: [
+        { id: 'r_c1_legal', label: 'Legal Name', field: 'text' },
+        { id: 'r_c1_addr', label: 'Current Home Address', field: 'text' },
+        { id: 'r_c1_phone', label: 'Phone', field: 'text' },
+        { id: 'r_c1_email', label: 'Email', field: 'text' },
+        { id: 'r_c1_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'r_c1_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'r_c1_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'r_c1_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Client #2', items: [
+        { id: 'r_c2_legal', label: 'Legal Name', field: 'text' },
+        { id: 'r_c2_addr', label: 'Current Home Address', field: 'text' },
+        { id: 'r_c2_phone', label: 'Phone', field: 'text' },
+        { id: 'r_c2_email', label: 'Email', field: 'text' },
+        { id: 'r_c2_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'r_c2_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'r_c2_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'r_c2_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Important Dates', items: [
+        { id: 'r_d_initial', label: 'Initial Viewing', field: 'date' },
+        { id: 'r_d_mls', label: 'MLS Contract Date', field: 'date' },
+        { id: 'r_d_a1', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a2', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a3', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a4', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a5', label: 'Amendment', field: 'text' },
+        { id: 'r_d_a6', label: 'Amendment', field: 'text' },
+      ]},
+      { name: 'Accepted Offer Dates', items: [
+        { id: 'r_o_accepted', label: 'Accepted Offer Date', field: 'date' },
+        { id: 'r_o_inspection', label: 'Inspection Date & Time', field: 'date' },
+        { id: 'r_o_subject', label: 'Subject Removal Date', field: 'date' },
+        { id: 'r_o_completion', label: 'Completion', field: 'date' },
+        { id: 'r_o_adjust', label: 'Adjustment Date', field: 'date' },
+        { id: 'r_o_poss', label: 'Possession/Closing Date', field: 'date' },
+        { id: 'r_o_cal', label: 'Add Dates in Calendar' },
+      ]},
+      { name: 'Skyslope Documents', items: [
+        { id: 'r_s_create', label: 'Create Skyslope File' },
+        { id: 'r_s_cps', label: 'Upload CPS' },
+        { id: 'r_s_dorts', label: 'Send DORTS' },
+        { id: 'r_s_dortsup', label: 'Upload DORTS' },
+        { id: 'r_s_send_pc', label: 'Send Privacy & Consent form' },
+        { id: 'r_s_up_pc', label: 'Upload Privacy & Consent form' },
+        { id: 'r_s_fintrac', label: 'Complete Fintrac' },
+        { id: 'r_s_disc', label: 'Disclosure of Remuneration' },
+        { id: 'r_s_title', label: 'Signed TITLE' },
+        { id: 'r_s_pds', label: 'Signed PDS' },
+        { id: 'r_s_dep_pct', label: 'Deposit %', field: 'text' },
+        { id: 'r_s_dep_amt', label: 'Deposit Amount', field: 'number' },
+      ]},
+      { name: 'Home Info', items: [
+        { id: 'r_h_mls', label: 'MLS #', field: 'text' },
+        { id: 'r_h_year', label: 'Year Built', field: 'text' },
+        { id: 'r_h_bed', label: 'Bedrooms', field: 'number' },
+        { id: 'r_h_bath', label: 'Bathroom', field: 'number' },
+        { id: 'r_h_lot', label: 'Lot SF', field: 'text' },
+        { id: 'r_h_int', label: 'Interior SF', field: 'text' },
+        { id: 'r_h_sold', label: 'Sold Price', field: 'number' },
+        { id: 'r_h_pid', label: 'PID #', field: 'text' },
+        { id: 'r_h_legal_desc', label: 'Legal Description', field: 'text' },
+        { id: 'r_h_strata', label: 'Strata Plan', field: 'text' },
+        { id: 'r_h_strata_lot', label: 'Strata Lot #', field: 'text' },
+        { id: 'r_h_pull_title', label: 'Pull Title + Strata Plan' },
+        { id: 'r_h_pull_common', label: 'Pull Common Title' },
+        { id: 'r_h_units', label: 'Total Units in Building', field: 'number' },
+        { id: 'r_h_floors', label: 'Total Floors', field: 'number' },
+        { id: 'r_h_park', label: 'Parking Stall(s)', field: 'text' },
+        { id: 'r_h_storage', label: 'Storage', field: 'text' },
+        { id: 'r_h_pets', label: 'Pets Allowed?', field: 'text' },
+        { id: 'r_h_rentals', label: 'Rentals Allowed?', field: 'text' },
+        { id: 'r_h_gross', label: 'Gross Tax', field: 'number' },
+        { id: 'r_h_taxyear', label: 'Tax Year', field: 'text' },
+        { id: 'r_h_zoning', label: 'Zoning', field: 'text' },
+        { id: 'r_h_ac', label: 'AC' },
+        { id: 'r_h_heat', label: 'Heating Type', field: 'text' },
+        { id: 'r_h_amen', label: 'Amenities', field: 'text' },
+        { id: 'r_h_crf', label: 'Total Contingency Reserve Fund', field: 'number' },
+        { id: 'r_h_water', label: 'Water Deductible', field: 'text' },
+        { id: 'r_h_levies_recent', label: 'Any recent Levies in last 12 months', field: 'text' },
+        { id: 'r_h_levies_up', label: 'Any upcoming Levies due?', field: 'text' },
+        { id: 'r_h_keys_phone', label: 'Phone', field: 'text' },
+        { id: 'r_h_keys_email', label: 'Email', field: 'text' },
+        { id: 'r_h_home_keys', label: '# of Home Key(s)', field: 'number' },
+        { id: 'r_h_fobs', label: '# of Fob(s)', field: 'number' },
+        { id: 'r_h_garage', label: '# of Garage Door Key(s)', field: 'number' },
+        { id: 'r_h_mail', label: '# of Mail Key(s)', field: 'number' },
+        { id: 'r_h_storage_keys', label: '# of Storage Key(s)', field: 'number' },
+      ]},
+      { name: 'Pre-Offer Setup', items: [
+        { id: 'r_p_fub', label: 'Add to FUB' },
+        { id: 'r_p_webform', label: 'Create Webform transaction' },
+        { id: 'r_p_id', label: 'Collect ID (Drivers License)' },
+        { id: 'r_p_nlm', label: 'Notebook LM to Review Strata Docs' },
+      ]},
+      { name: 'Accepted Offer Subjects', items: [
+        { id: 'r_aos_inspection', label: 'Inspection' },
+        { id: 'r_aos_title', label: 'TITLE SEARCH and PROPERTY DISCLOSURE STATEMENT' },
+        { id: 'r_aos_inspection2', label: 'INSPECTION' },
+        { id: 'r_aos_insurance', label: 'INSURANCE' },
+        { id: 'r_aos_strata', label: 'STRATA DOCUMENT REVIEW' },
+        { id: 'r_aos_clauses', label: 'STANDARD CLAUSES' },
+      ]},
+      { name: 'Post Sale Steps', items: [
+        { id: 'r_ps_log', label: 'Add Client to Sold log' },
+        { id: 'r_ps_clist', label: 'Add to Client list' },
+        { id: 'r_ps_album', label: 'Add Client Photo to Client Album' },
+        { id: 'r_ps_fub', label: 'Update FUB Status' },
+        { id: 'r_ps_paragon', label: 'Set Paragon Search of Nearby Homes' },
+      ]},
+      { name: 'Other Realtor Info', items: [
+        { id: 'r_or_name', label: 'Name', field: 'text' },
+        { id: 'r_or_brok', label: 'Brokerage', field: 'text' },
+        { id: 'r_or_phone', label: 'Phone', field: 'text' },
+        { id: 'r_or_email', label: 'Email', field: 'text' },
+      ]},
+      { name: 'Seller Lawyer Info', items: [
+        { id: 'r_sl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'r_sl_phone', label: 'Phone', field: 'text' },
+        { id: 'r_sl_email', label: 'Email', field: 'text' },
+        { id: 'r_sl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'r_sl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'r_sl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Buyer Lawyer Info', items: [
+        { id: 'r_bl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'r_bl_addr', label: 'Address', field: 'text' },
+        { id: 'r_bl_phone', label: 'Phone', field: 'text' },
+        { id: 'r_bl_email', label: 'Email', field: 'text' },
+        { id: 'r_bl_sent_r', label: 'Sent to other Realtor' },
+        { id: 'r_bl_sent_m', label: 'Sent to Mortgage Broker' },
+        { id: 'r_bl_sky', label: 'Update on Skyslope' },
+      ]},
+      { name: 'Commission', items: [
+        { id: 'r_cm_total', label: 'Total', field: 'number' },
+        { id: 'r_cm_buyer', label: 'Buyer Agent', field: 'number' },
+        { id: 'r_cm_listing', label: 'Listing Agent', field: 'number' },
+        { id: 'r_cm_amt', label: 'Amount + GST', field: 'number' },
+      ]},
+    ]
+  },
+  presale: {
+    title: 'Pre-Sale',
+    role: 'Pre-Sale Buyers Â· Yellow',
+    accent: '#f1c30c',
+    accentSoft: '#fcf3c8',
+    headClass: 'yellow',
+    sections: [
+      { name: 'Client #1', items: [
+        { id: 'p_c1_legal', label: 'Legal Name', field: 'text' },
+        { id: 'p_c1_addr', label: 'Current Home Address', field: 'text' },
+        { id: 'p_c1_phone', label: 'Phone', field: 'text' },
+        { id: 'p_c1_email', label: 'Email', field: 'text' },
+        { id: 'p_c1_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'p_c1_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'p_c1_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'p_c1_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Client #2', items: [
+        { id: 'p_c2_legal', label: 'Legal Name', field: 'text' },
+        { id: 'p_c2_addr', label: 'Current Home Address', field: 'text' },
+        { id: 'p_c2_phone', label: 'Phone', field: 'text' },
+        { id: 'p_c2_email', label: 'Email', field: 'text' },
+        { id: 'p_c2_dl', label: 'Drivers License #', field: 'text' },
+        { id: 'p_c2_exp', label: 'Expiry Date', field: 'date' },
+        { id: 'p_c2_dob', label: 'Date of Birth', field: 'date' },
+        { id: 'p_c2_occ', label: 'Occupation & Title', field: 'text' },
+      ]},
+      { name: 'Important Dates', items: [
+        { id: 'p_d_initial', label: 'Initial Viewing', field: 'date' },
+        { id: 'p_d_a1', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a2', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a3', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a4', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a5', label: 'Amendment', field: 'text' },
+        { id: 'p_d_a6', label: 'Amendment', field: 'text' },
+      ]},
+      { name: 'Accepted Offer Dates', items: [
+        { id: 'p_o_accepted', label: 'Accepted Offer Date', field: 'date' },
+        { id: 'p_o_subject', label: 'Subject Removal Date', field: 'date' },
+        { id: 'p_o_completion', label: 'Completion', field: 'date' },
+        { id: 'p_o_adjust', label: 'Adjustment Date', field: 'date' },
+        { id: 'p_o_poss', label: 'Possession/Closing Date', field: 'date' },
+        { id: 'p_o_cal', label: 'Add Dates in Calendar' },
+      ]},
+      { name: 'Skyslope Documents', items: [
+        { id: 'p_s_create', label: 'Create Skyslope File' },
+        { id: 'p_s_cps', label: 'Upload CPS' },
+        { id: 'p_s_dorts', label: 'Send DORTS' },
+        { id: 'p_s_dortsup', label: 'Upload DORTS' },
+        { id: 'p_s_send_pc', label: 'Send Privacy & Consent form' },
+        { id: 'p_s_up_pc', label: 'Upload Privacy & Consent form' },
+        { id: 'p_s_fintrac', label: 'Complete Fintrac' },
+        { id: 'p_s_disc', label: 'Disclosure of Remuneration' },
+        { id: 'p_s_dep_pct', label: 'Deposit %', field: 'text' },
+        { id: 'p_s_dep_amt', label: 'Deposit Amount', field: 'number' },
+      ]},
+      { name: 'Home Info', items: [
+        { id: 'p_h_mls', label: 'MLS #', field: 'text' },
+        { id: 'p_h_dev', label: 'Developer', field: 'text' },
+        { id: 'p_h_year', label: 'Year Built', field: 'text' },
+        { id: 'p_h_bed', label: 'Bedrooms', field: 'number' },
+        { id: 'p_h_bath', label: 'Bathroom', field: 'number' },
+        { id: 'p_h_lot', label: 'Lot SF', field: 'text' },
+        { id: 'p_h_int', label: 'Interior SF', field: 'text' },
+        { id: 'p_h_sold', label: 'Sold Price', field: 'number' },
+      ]},
+      { name: 'Pre-Sale Setup', items: [
+        { id: 'p_p_fub', label: 'Add to FUB' },
+        { id: 'p_p_webform', label: 'Create Webform transaction' },
+        { id: 'p_p_id', label: 'Collect ID (Drivers License)' },
+      ]},
+      { name: 'Post Sale Steps', items: [
+        { id: 'p_ps_log', label: 'Add Client to Sold log' },
+        { id: 'p_ps_clist', label: 'Add to Client list' },
+        { id: 'p_ps_album', label: 'Add Client Photo to Client Album' },
+        { id: 'p_ps_fub', label: 'Update FUB Status' },
+        { id: 'p_ps_paragon', label: 'Set Paragon Search of Nearby Homes' },
+      ]},
+      { name: 'Other Realtor Info', items: [
+        { id: 'p_or_name', label: 'Name', field: 'text' },
+        { id: 'p_or_brok', label: 'Brokerage', field: 'text' },
+        { id: 'p_or_phone', label: 'Phone', field: 'text' },
+        { id: 'p_or_email', label: 'Email', field: 'text' },
+      ]},
+      { name: 'Seller Lawyer Info', items: [
+        { id: 'p_sl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'p_sl_phone', label: 'Phone', field: 'text' },
+        { id: 'p_sl_email', label: 'Email', field: 'text' },
+        { id: 'p_sl_sent_r', label: 'Sent to other Realtor' },
+      ]},
+      { name: 'Buyer Lawyer Info', items: [
+        { id: 'p_bl_co', label: 'Lawyer / Notary Company', field: 'text' },
+        { id: 'p_bl_addr', label: 'Address', field: 'text' },
+        { id: 'p_bl_phone', label: 'Phone', field: 'text' },
+        { id: 'p_bl_email', label: 'Email', field: 'text' },
+        { id: 'p_bl_sent_r', label: 'Sent to other Realtor' },
+      ]},
+      { name: 'Commission', items: [
+        { id: 'p_cm_total', label: 'Total', field: 'number' },
+        { id: 'p_cm_buyer', label: 'Buyer Agent', field: 'number' },
+        { id: 'p_cm_listing', label: 'Listing Agent', field: 'number' },
+        { id: 'p_cm_amt', label: 'Amount + GST', field: 'number' },
+      ]},
+    ]
+  }
+};
+
+/* ============== State + persistence â MULTI TRANSACTION ==============
+   Top-level store holds an array of transactions. Each transaction has:
+     id, type ('listing'|'resale'|'presale'), label, address,
+     checked{}, notes{}, values{}, notesOpen{}, archived, createdAt
+   `currentId` = the active transaction. UI shows the SINGLE list for that
+   transaction's type. Sidebar lets you switch / add / archive / rename.
+============================================================== */
+
+const STORAGE_KEY = 'kris_ong_tx_v2';
+const LEGACY_KEY = 'kris_ong_tx_v1';
+let store = loadStore();
+
+function uid() { return 't_' + Math.random().toString(36).slice(2, 9); }
+
+function loadStore() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  // Migrate from v1 if present
+  let migrated = null;
+  try {
+    const old = localStorage.getItem(LEGACY_KEY);
+    if (old) {
+      const o = JSON.parse(old);
+      migrated = ['listing','resale','presale']
+        .filter(t => (o.client?.[t]?.name || o.client?.[t]?.address || hasAnyDataForType(o, t)))
+        .map(t => ({
+          id: uid(), type: t,
+          label: o.client?.[t]?.name || DATA[t].title + ' Â· #1',
+          address: o.client?.[t]?.address || '',
+          checked: pickByPrefix(o.checked, t[0]),
+          notes: pickByPrefix(o.notes, t[0]),
+          values: pickByPrefix(o.values, t[0]),
+          notesOpen: pickByPrefix(o.notesOpen, t[0]),
+          collapsed: {},
+          archived: false,
+          createdAt: Date.now(),
+        }));
+    }
+  } catch(e) {}
+  const transactions = (migrated && migrated.length) ? migrated : [
+    seedTx('listing', 'New Listing'),
+  ];
+  return { transactions, currentId: transactions[0].id };
+}
+function hasAnyDataForType(o, t) {
+  const p = t[0];
+  return Object.keys(o.checked||{}).some(k=>k.startsWith(p+'_'))
+      || Object.keys(o.values||{}).some(k=>k.startsWith(p+'_'));
+}
+function pickByPrefix(obj, prefix) {
+  const out = {};
+  Object.entries(obj||{}).forEach(([k,v]) => { if (k.startsWith(prefix+'_')) out[k] = v; });
+  return out;
+}
+function seedTx(type, label) {
+  return {
+    id: uid(), type, label: label || (DATA[type].title + ' transaction'),
+    address: '', checked: {}, notes: {}, values: {}, notesOpen: {}, collapsed: {},
+    archived: false, createdAt: Date.now(),
+  };
+}
+function saveStore() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+  const stamp = document.getElementById('updated-stamp');
+  if (stamp) stamp.textContent = 'â Saved ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+}
+function currentTx() {
+  return store.transactions.find(t => t.id === store.currentId) || store.transactions[0];
+}
+// Backwards-compat shim: existing render code reads `state.checked[id]` etc.
+// We expose `state` as a live proxy onto the current transaction.
+const state = new Proxy({}, {
+  get(_, prop) { const t = currentTx(); return t ? t[prop] : undefined; },
+  set(_, prop, val) { const t = currentTx(); if (t) t[prop] = val; return true; }
+});
+function saveState() { saveStore(); if (typeof updateStickyBar === 'function') updateStickyBar(); }
+
+/* ============== Success sound (Web Audio) ============== */
+let _audioCtx = null;
+let _audioMuted = localStorage.getItem('tt_sound_muted') === '1';
+let _lastSoundTs = 0;
+function setMuted(m) {
+  _audioMuted = m;
+  localStorage.setItem('tt_sound_muted', m ? '1' : '0');
+  const btn = document.getElementById('sound-btn');
+  if (btn) {
+    btn.title = m ? 'Sound off â click to enable' : 'Sound on â click to mute';
+    btn.innerHTML = m
+      ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`
+      : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
+    btn.classList.toggle('muted', m);
+  }
+}
+function playSuccessSound() {
+  if (_audioMuted) return;
+  // Throttle so rapid bulk-check (e.g. license scan filling many rows) doesn't blast a chord
+  const now = Date.now();
+  if (now - _lastSoundTs < 60) return;
+  _lastSoundTs = now;
+  try {
+    if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const ctx = _audioCtx;
+    if (ctx.state === 'suspended') ctx.resume();
+    // Two-note ascending pop: C5 â E5
+    const t = ctx.currentTime;
+    const notes = [
+      { freq: 523.25, start: 0,    dur: 0.10 }, // C5
+      { freq: 659.25, start: 0.07, dur: 0.14 }, // E5
+    ];
+    notes.forEach(n => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(n.freq, t + n.start);
+      // Quick attack, soft decay
+      gain.gain.setValueAtTime(0, t + n.start);
+      gain.gain.linearRampToValueAtTime(0.18, t + n.start + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + n.start + n.dur);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(t + n.start);
+      osc.stop(t + n.start + n.dur + 0.02);
+    });
+  } catch (e) { /* ignore */ }
+}
+
+/* ============== Render â SINGLE ACTIVE TRANSACTION ============== */
+
+function renderClients() {
+  const wrap = document.getElementById('clients');
+  const tx = currentTx();
+  if (!tx) { wrap.innerHTML = ''; return; }
+  const list = DATA[tx.type];
+  wrap.style.gridTemplateColumns = '1fr';
+  wrap.innerHTML = `
+    <div class="tx-bar" style="--accent:${list.accent};--accent-soft:${list.accentSoft};">
+      <div class="meta">
+        <span class="type-pill">${list.role}</span>
+        <input class="tx-name" data-rename value="${escapeAttr(tx.label || '')}" placeholder="Name this transactionâ¦" />
+      </div>
+      <div class="actions">
+        <button data-duplicate title="Duplicate">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Duplicate
+        </button>
+        <button data-archive title="Archive">
+          ${tx.archived ? 'Unarchive' : 'Archive'}
+        </button>
+        <button class="danger" data-delete title="Delete this transaction">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+          Delete
+        </button>
+      </div>
+    </div>
+    <div class="client-card" data-type="${tx.type}" style="--accent:${list.accent};--accent-soft:${list.accentSoft};">
+      <div class="stripe"></div>
+      <div class="client-body">
+        <div class="client-tag"><span class="dot"></span>Property details</div>
+        <div class="field">
+          <label>Address To Buy</label>
+          <input data-clientfield="address" value="${escapeAttr(tx.address || '')}" placeholder="Address to buy" />
+        </div>
+        <div class="progress-row">
+          <div class="progress-bar"><div class="progress-fill" data-progress-fill="${tx.type}"></div></div>
+          <div class="progress-text" data-progress-text="${tx.type}">0/0</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderLists() {
+  const wrap = document.getElementById('lists');
+  const tx = currentTx();
+  if (!tx) { wrap.innerHTML = ''; return; }
+  const list = DATA[tx.type];
+  wrap.classList.add('single');
+  wrap.innerHTML = '';
+  const col = document.createElement('div');
+  col.className = 'list-col';
+  col.dataset.type = tx.type;
+  col.style.setProperty('--accent', list.accent);
+  col.style.setProperty('--accent-soft', list.accentSoft);
+  const totalItems = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+  col.innerHTML = `
+    <div class="list-head ${list.headClass}">
+      <div class="title-block">
+        <span class="title">${list.title}</span>
+        <span class="role">${list.role}</span>
+      </div>
+      <span class="count" data-count="${tx.type}">0 / ${totalItems}</span>
+    </div>
+    <div class="list-toolbar">
+      <input class="search" placeholder="Filter itemsâ¦" data-search="${tx.type}" />
+      <div class="filter">
+        <button class="active" data-filter="${tx.type}" data-mode="all">All</button>
+        <button data-filter="${tx.type}" data-mode="open">Open</button>
+        <button data-filter="${tx.type}" data-mode="done">Done</button>
+      </div>
+      <button class="collapse-btn" data-collapse-all="${tx.type}" title="Collapse all sections">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+        Collapse
+      </button>
+      <button class="collapse-btn" data-expand-all="${tx.type}" title="Expand all sections">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        Expand
+      </button>
+    </div>
+    <div class="list-body" data-body="${tx.type}"></div>
+  `;
+  wrap.appendChild(col);
+  renderBody(tx.type);
+}
+
+function renderBody(key) {
+  const list = DATA[key];
+  const tx = currentTx();
+  const body = document.querySelector(`[data-body="${key}"]`);
+  body.innerHTML = '';
+  list.sections.forEach((sec, sidx) => {
+    // Hide Client #2 unless user has added it
+    if (/^Client #2/.test(sec.name) && !tx.showClient2) {
+      // Render an "Add Additional Client" button in its place
+      const addRow = document.createElement('div');
+      addRow.className = 'section-head';
+      addRow.innerHTML = `<button class="scan-btn" data-add-client2 style="border-style:dashed;background:transparent;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Additional Client</button>`;
+      body.appendChild(addRow);
+      return;
+    }
+    const secId = `${key}_sec_${sidx}`;
+    const head = document.createElement('div');
+    head.className = 'section-head';
+    head.dataset.section = secId;
+    // Color-code by section name
+    const palette = sectionPalette(sec.name);
+    head.style.setProperty('--sec-accent', palette.accent);
+    head.style.setProperty('--sec-bg', palette.bg);
+    head.style.setProperty('--sec-bg-soft', palette.bgSoft);
+    const total = sec.items.length;
+    const done = sec.items.filter(it => state.checked[it.id]).length;
+    const pending = total - done;
+    const isClientSec = /^Client #\d/.test(sec.name);
+    const scanBtn = isClientSec ? `<button class="scan-btn" data-scan-section="${sidx}" tabindex="-1" title="Auto-fill from driver's license photo"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2"/><path d="M14 10h4M14 14h3"/></svg> Scan License</button>` : '';
+    const removeC2 = /^Client #2/.test(sec.name) ? `<button class="scan-btn" data-remove-client2 tabindex="-1" style="border-color:var(--line-2);color:var(--ink-3);background:transparent;" title="Remove second client">â</button>` : '';
+    const pendingBadge = pending > 0 ? `<span class="pending-badge" data-secpending="${secId}">${pending} pending</span>` : '';
+    head.innerHTML = `<span class="lbl"><span class="caret"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>${sec.name}${pendingBadge}</span><span class="pct-wrap">${removeC2}${scanBtn}<span class="pct" data-secpct="${secId}">${done}/${total}</span></span>`;
+    head.dataset.toggleSection = secId;
+    if (tx.collapsed && tx.collapsed[secId]) head.classList.add('collapsed');
+    body.appendChild(head);
+    // Sort: checked items float to top of section, preserving original order within each group
+    const sorted = sec.items.map((it, i) => ({ it, i }))
+      .sort((a, b) => {
+        const ca = state.checked[a.it.id] ? 0 : 1;
+        const cb = state.checked[b.it.id] ? 0 : 1;
+        if (ca !== cb) return ca - cb;
+        return a.i - b.i;
+      })
+      .map(x => x.it);
+    const sectionItems = sorted;
+    sectionItems.forEach(it => {
+      const itEl = document.createElement('div');
+      itEl.className = 'item sec-tinted';
+      itEl.dataset.section = secId;
+      if (tx.collapsed && tx.collapsed[secId]) itEl.classList.add('sec-collapsed');
+      itEl.style.setProperty('--sec-bg', palette.bg);
+      itEl.style.setProperty('--sec-bg-soft', palette.bgSoft);
+      itEl.dataset.id = it.id;
+      itEl.dataset.label = it.label.toLowerCase();
+      if (state.checked[it.id]) itEl.classList.add('done');
+      if (state.notes[it.id]) itEl.classList.add('has-note');
+      if (state.notesOpen[it.id]) itEl.classList.add('note-open');
+      if (it.field) itEl.classList.add('has-value-field');
+      // Needs-attention: not checked, OR has a value field that's empty
+      const valEmpty = it.field && !(state.values[it.id] && String(state.values[it.id]).trim());
+      if (!state.checked[it.id] || valEmpty) itEl.classList.add('needs-attention');
+
+      const noteIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+
+      const fieldInput = it.field ? renderField(it) : '';
+
+      itEl.innerHTML = `
+        <button class="checkbox" data-check="${it.id}" aria-label="Toggle" tabindex="-1">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <span class="label" data-checktoggle="${it.id}">${it.label}</span>
+        <button class="note-toggle" data-noteopen="${it.id}" title="Toggle note" tabindex="-1">${noteIcon}</button>
+        ${fieldInput}
+        <div class="note">
+          <textarea data-note="${it.id}" placeholder="Add a noteâ¦">${escapeText(state.notes[it.id] || '')}</textarea>
+        </div>
+      `;
+      body.appendChild(itEl);
+    });
+  });
+}
+
+function renderField(it) {
+  const v = state.values[it.id] || '';
+  const type = it.field === 'number' ? 'number' : 'text';
+  const ph = it.field === 'date' ? 'Pick a dateâ¦' : (it.field === 'number' ? '0' : 'Enter ' + it.label.toLowerCase());
+  const cls = it.field === 'date' ? 'value-input date-field' : 'value-input';
+  const dataDate = it.field === 'date' ? ' data-datepicker="1"' : '';
+  const isPhone = /phone/i.test(it.label) && it.field === 'text';
+  const dataPhone = isPhone ? ' data-phone="1" inputmode="tel" autocomplete="tel" maxlength="14"' : '';
+  const displayVal = isPhone ? formatPhone(v) : formatDateDisplay(v);
+  return `<div class="${cls}"><input type="${type}" data-value="${it.id}" placeholder="${ph}" value="${escapeAttr(displayVal)}"${dataDate}${dataPhone} /></div>`;
+}
+
+function formatPhone(v) {
+  if (!v) return '';
+  const digits = String(v).replace(/\D/g, '').slice(0, 10);
+  if (digits.length < 4) return digits;
+  if (digits.length < 7) return `${digits.slice(0,3)}-${digits.slice(3)}`;
+  return `${digits.slice(0,3)}-${digits.slice(3,6)}-${digits.slice(6)}`;
+}
+
+function formatDateDisplay(v) {
+  if (!v) return '';
+  // Accept YYYY-MM-DD and convert to "Mon DD, YYYY" for display; otherwise pass-through
+  const m = String(v).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return v;
+  const d = new Date(parseInt(m[1]), parseInt(m[2])-1, parseInt(m[3]));
+  if (isNaN(d.getTime())) return v;
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+function parseDateInput(v) {
+  // Accepts many forms: YYYY-MM-DD, MM/DD/YYYY, M/D/YY, "Mon DD, YYYY", "Month DD YYYY", "DD Mon YYYY"
+  if (!v) return null;
+  v = String(v).trim();
+  if (!v) return null;
+
+  const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+  const monthsAbbr = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  function monthIdx(s) {
+    s = s.toLowerCase().replace(/\.$/, '');
+    let i = months.indexOf(s);
+    if (i >= 0) return i;
+    i = monthsAbbr.indexOf(s.slice(0,3));
+    return i;
+  }
+  function pad(n) { return String(n).padStart(2,'0'); }
+  function build(y, m, d) {
+    if (m < 1 || m > 12) return null;
+    const dim = new Date(y, m, 0).getDate();
+    if (d < 1 || d > dim) return null;
+    if (y < 100) y += y < 50 ? 2000 : 1900;
+    if (y < 1900 || y > 2100) return null;
+    return `${y}-${pad(m)}-${pad(d)}`;
+  }
+
+  // YYYY-MM-DD or YYYY/MM/DD
+  let m = v.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})$/);
+  if (m) return build(+m[1], +m[2], +m[3]);
+  // MM/DD/YYYY or MM-DD-YYYY (assume month-first per US/CA convention)
+  m = v.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{2,4})$/);
+  if (m) return build(+m[3], +m[1], +m[2]);
+  // "Mon DD, YYYY" or "Mon DD YYYY"
+  m = v.match(/^([A-Za-z]+)\.?\s+(\d{1,2}),?\s+(\d{2,4})$/);
+  if (m) {
+    const mi = monthIdx(m[1]);
+    if (mi >= 0) return build(+m[3], mi+1, +m[2]);
+  }
+  // "DD Mon YYYY"
+  m = v.match(/^(\d{1,2})\s+([A-Za-z]+)\.?\s+(\d{2,4})$/);
+  if (m) {
+    const mi = monthIdx(m[2]);
+    if (mi >= 0) return build(+m[3], mi+1, +m[1]);
+  }
+  // Fallback to Date.parse
+  const d = new Date(v);
+  if (!isNaN(d.getTime())) return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  return null;
+}
+
+function renderSummary() {
+  const wrap = document.getElementById('summary');
+  const tx = currentTx();
+  if (!tx) { wrap.innerHTML = ''; return; }
+  wrap.classList.add('single');
+  wrap.innerHTML = '';
+  const list = DATA[tx.type];
+  const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+  const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => state.checked[it.id]).length, 0);
+  const pct = total ? Math.round((done/total)*100) : 0;
+  const card = document.createElement('div');
+  card.className = 'summary-card';
+  card.dataset.type = tx.type;
+  card.style.setProperty('--accent', list.accent);
+  card.innerHTML = `
+    <div class="head">
+      <span class="lbl"><span class="dot"></span>${list.title}</span>
+      <span class="lbl">${pct}%</span>
+    </div>
+    <div class="num"><span data-summary-done="${tx.type}">${done}</span><span> / ${total} items</span></div>
+    <div class="pbar"><div data-summary-fill="${tx.type}" style="width:${pct}%"></div></div>
+  `;
+  wrap.appendChild(card);
+}
+
+/* ============== Tabs + Dashboard ============== */
+
+function renderTabs() {
+  const wrap = document.getElementById('tx-tabs');
+  wrap.innerHTML = '';
+  const active = store.transactions.filter(t => !t.archived);
+  active.forEach(tx => {
+    const list = DATA[tx.type];
+    const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+    const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => tx.checked[it.id]).length, 0);
+    const pct = total ? Math.round((done/total)*100) : 0;
+    const t = document.createElement('button');
+    t.className = 'tx-tab' + (tx.id === store.currentId ? ' active' : '');
+    t.dataset.txid = tx.id;
+    t.style.setProperty('--accent', list.accent);
+    t.style.setProperty('--accent-soft', list.accentSoft);
+    t.innerHTML = `
+      <span class="swatch"></span>
+      <span class="tab-label">${escapeText(tx.label || 'Untitled')}</span>
+      <span class="tab-pct">${pct}%</span>
+    `;
+    wrap.appendChild(t);
+  });
+  const add = document.createElement('button');
+  add.className = 'tx-add';
+  add.id = 'tx-add-btn';
+  add.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New transaction`;
+  wrap.appendChild(add);
+  const menu = document.createElement('div');
+  menu.className = 'tx-add-menu';
+  menu.id = 'tx-add-menu';
+  menu.innerHTML = Object.entries(DATA).map(([k, l]) => `
+    <button data-newtype="${k}"><span class="swatch" style="background:${l.accent}"></span>${l.title} <span style="color:var(--ink-3);margin-left:auto;font-size:11px">${l.role.split('Â·')[0].trim()}</span></button>
+  `).join('');
+  wrap.appendChild(menu);
+}
+
+function renderDashboard() {
+  const wrap = document.getElementById('dashboard');
+  wrap.innerHTML = '';
+  const active = store.transactions.filter(t => !t.archived);
+  const archived = store.transactions.filter(t => t.archived);
+  if (active.length) {
+    const t = document.createElement('div'); t.className = 'dash-section-title'; t.textContent = `Active Â· ${active.length}`; wrap.appendChild(t);
+  }
+  active.forEach(tx => wrap.appendChild(dashCard(tx)));
+  const add = document.createElement('button');
+  add.className = 'dash-add';
+  add.id = 'dash-add-btn';
+  add.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add transaction`;
+  wrap.appendChild(add);
+  if (archived.length) {
+    const t = document.createElement('div'); t.className = 'dash-section-title'; t.textContent = `Archived Â· ${archived.length}`; wrap.appendChild(t);
+    archived.forEach(tx => { const c = dashCard(tx); c.style.opacity = '0.55'; wrap.appendChild(c); });
+  }
+}
+function dashCard(tx) {
+  const list = DATA[tx.type];
+  const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+  const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => tx.checked[it.id]).length, 0);
+  const pct = total ? Math.round((done/total)*100) : 0;
+  const card = document.createElement('button');
+  card.className = 'dash-card';
+  card.dataset.opentx = tx.id;
+  card.style.setProperty('--accent', list.accent);
+  card.style.setProperty('--accent-soft', list.accentSoft);
+  card.innerHTML = `
+    <div class="head">
+      <span class="pill">${list.role}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3)">${pct}%</span>
+    </div>
+    <h3>${escapeText(tx.label || 'Untitled')}</h3>
+    <p class="addr">${escapeText(tx.address || 'No address yet')}</p>
+    <div class="pbar"><div style="width:${pct}%"></div></div>
+    <div class="stats"><span>${done}/${total} items</span><span>${tx.archived ? 'ARCHIVED' : 'ACTIVE'}</span></div>
+  `;
+  return card;
+}
+
+function setActive(id) {
+  store.currentId = id;
+  saveStore();
+  renderAll();
+}
+function renderAll() {
+  renderTabs();
+  renderClients();
+  renderLists();
+  renderSummary();  if (currentTx()) updateProgress(currentTx().type);
+  renderDashboard();
+  updateStickyBar();
+}
+
+function updateStickyBar() {
+  const bar = document.getElementById('sticky-tx-bar');
+  if (!bar) return;
+  const tx = currentTx();
+  if (!tx) { bar.classList.remove('visible'); return; }
+  const list = DATA[tx.type];
+  bar.style.setProperty('--accent', list.accent);
+  bar.style.setProperty('--accent-soft', list.accentSoft);
+  bar.querySelector('[data-pill-role]').textContent = list.role || '';
+  bar.querySelector('[data-pill-name]').textContent = tx.label || 'Untitled';
+  bar.querySelector('[data-pill-addr]').textContent = tx.address || '';
+
+  // Sold Price (premium block)
+  const priceEl = bar.querySelector('[data-pill-price]');
+  const priceDivider = bar.querySelector('[data-pill-price-divider]');
+  if (priceEl) {
+    const prefix = tx.type === 'listing' ? 'l' : tx.type === 'resale' ? 'r' : 'p';
+    const soldRaw = (tx.values || {})[`${prefix}_h_sold`];
+    const formatted = soldRaw ? formatSoldPrice(soldRaw) : '';
+    const valEl = priceEl.querySelector('[data-pill-price-value]');
+    if (valEl) valEl.textContent = formatted;
+    if (formatted) {
+      priceEl.removeAttribute('data-empty');
+      if (priceDivider) priceDivider.style.display = '';
+    } else {
+      priceEl.setAttribute('data-empty', 'true');
+      if (priceDivider) priceDivider.style.display = 'none';
+    }
+  }
+
+  // Countdowns (Closing/Completion + Possession)
+  renderStickyCountdowns(bar, tx);
+
+  // Progress
+  const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+  const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => tx.checked[it.id]).length, 0);
+  const pct = total ? Math.round((done/total)*100) : 0;
+  bar.querySelector('[data-pill-fill]').style.width = pct + '%';
+  bar.querySelector('[data-pill-pct]').textContent = pct + '%';
+}
+
+function formatSoldPrice(raw) {
+  if (raw == null) return '';
+  const n = Number(String(raw).replace(/[^0-9.\-]/g, ''));
+  if (!isFinite(n) || n === 0) return '';
+  return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+}
+
+function renderStickyCountdowns(bar, tx) {
+  const wrap = bar.querySelector('[data-pill-countdowns]');
+  if (!wrap) return;
+  const prefix = tx.type === 'listing' ? 'l' : tx.type === 'resale' ? 'r' : 'p';
+  const v = tx.values || {};
+  const completionRaw = v[`${prefix}_o_completion`];
+  const possRaw = v[`${prefix}_o_poss`];
+  const chips = [];
+  const closingChip = buildCountdownChip('Closing', completionRaw);
+  if (closingChip) chips.push(closingChip);
+  const possChip = buildCountdownChip('Possession', possRaw);
+  if (possChip) chips.push(possChip);
+  wrap.innerHTML = chips.join('');
+}
+
+function buildCountdownChip(label, dateRaw) {
+  if (!dateRaw) return '';
+  const d = parseAnyDate(dateRaw);
+  if (!d || isNaN(d)) return '';
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const target = new Date(d);
+  target.setHours(0,0,0,0);
+  const diffMs = target - today;
+  const diffDays = Math.round(diffMs / (1000*60*60*24));
+  const dateLabel = target.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+  let cls = 'countdown-chip';
+  let row;
+  if (diffDays < 0) {
+    cls += ' closed';
+    const word = label === 'Possession' ? 'Possessed' : 'Closed';
+    row = `<div class="cd-row"><span class="cd-num">${word}</span><span class="cd-check">â</span></div>`;
+  } else if (diffDays === 0) {
+    cls += ' urgent';
+    row = `<div class="cd-row"><span class="cd-num">Today</span></div>`;
+  } else {
+    if (diffDays <= 7) cls += ' urgent';
+    const unit = diffDays === 1 ? 'Day' : 'Days';
+    row = `<div class="cd-row"><span class="cd-num">${diffDays}</span><span class="cd-unit">${unit}</span></div>`;
+  }
+  return `<div class="${cls}">
+    <div class="cd-label">${label}</div>
+    ${row}
+    <div class="cd-date">${dateLabel}</div>
+  </div>`;
+}
+
+function parseAnyDate(s) {
+  if (!s) return null;
+  if (s instanceof Date) return s;
+  const str = String(s).trim();
+  // Try native parse first (handles "Mon DD, YYYY", ISO, etc.)
+  let d = new Date(str);
+  if (!isNaN(d)) return d;
+  // Try MM/DD/YYYY or DD/MM/YYYY style
+  const m = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
+  if (m) {
+    let [_, a, b, y] = m;
+    if (y.length === 2) y = '20' + y;
+    d = new Date(`${y}-${a.padStart(2,'0')}-${b.padStart(2,'0')}`);
+    if (!isNaN(d)) return d;
+  }
+  return null;
+}
+
+// Tick countdowns every minute so day counts stay fresh
+setInterval(() => {
+  const bar = document.getElementById('sticky-tx-bar');
+  const tx = currentTx();
+  if (bar && tx) renderStickyCountdowns(bar, tx);
+}, 60 * 1000);
+
+/* ============== Updates ============== */
+
+function updateProgress(key) {
+  const list = DATA[key];
+  const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+  const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => state.checked[it.id]).length, 0);
+  const pct = total ? (done/total)*100 : 0;
+  const fill = document.querySelector(`[data-progress-fill="${key}"]`);
+  const txt = document.querySelector(`[data-progress-text="${key}"]`);
+  if (fill) fill.style.width = pct + '%';
+  if (txt) txt.textContent = `${done}/${total}`;
+  const count = document.querySelector(`[data-count="${key}"]`);
+  if (count) count.textContent = `${done} / ${total}`;
+  // section pcts
+  list.sections.forEach((sec, sidx) => {
+    const secId = `${key}_sec_${sidx}`;
+    const sd = sec.items.filter(it => state.checked[it.id]).length;
+    const sp = document.querySelector(`[data-secpct="${secId}"]`);
+    if (sp) sp.textContent = `${sd}/${sec.items.length}`;
+    // Pending badge
+    const pending = sec.items.length - sd;
+    const head = document.querySelector(`.section-head[data-section="${secId}"]`);
+    let badge = document.querySelector(`[data-secpending="${secId}"]`);
+    if (head) {
+      const lbl = head.querySelector('.lbl');
+      if (pending > 0) {
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'pending-badge';
+          badge.dataset.secpending = secId;
+          if (lbl) lbl.appendChild(badge);
+        }
+        badge.textContent = `${pending} pending`;
+      } else if (badge) {
+        badge.remove();
+      }
+    }
+  });
+  // summary
+  const sumDone = document.querySelector(`[data-summary-done="${key}"]`);
+  const sumFill = document.querySelector(`[data-summary-fill="${key}"]`);
+  if (sumDone) sumDone.textContent = done;
+  if (sumFill) sumFill.style.width = pct + '%';
+}
+
+/* ============== Events ============== */
+
+document.addEventListener('click', (e) => {
+  const cb = e.target.closest('[data-check]');
+  if (cb) { toggleCheck(cb.dataset.check); return; }
+  const lbl = e.target.closest('[data-checktoggle]');
+  if (lbl) { toggleCheck(lbl.dataset.checktoggle); return; }
+  // Collapse all / Expand all
+  const collapseAll = e.target.closest('[data-collapse-all]');
+  if (collapseAll) {
+    setAllSectionsCollapsed(collapseAll.dataset.collapseAll, true);
+    return;
+  }
+  const expandAll = e.target.closest('[data-expand-all]');
+  if (expandAll) {
+    setAllSectionsCollapsed(expandAll.dataset.expandAll, false);
+    return;
+  }
+  // Section collapse toggle
+  const secHead = e.target.closest('[data-toggle-section]');
+  if (secHead && !e.target.closest('.scan-btn') && !e.target.closest('[data-remove-client2]') && !e.target.closest('[data-add-client2]')) {
+    const secId = secHead.dataset.toggleSection;
+    const tx = currentTx();
+    tx.collapsed = tx.collapsed || {};
+    const collapsed = !secHead.classList.contains('collapsed');
+    secHead.classList.toggle('collapsed', collapsed);
+    tx.collapsed[secId] = collapsed;
+    document.querySelectorAll(`.item[data-section="${secId}"]`).forEach(it => {
+      it.classList.toggle('sec-collapsed', collapsed);
+    });
+    saveState();
+    return;
+  }
+  const nt = e.target.closest('[data-noteopen]');
+  if (nt) {
+    const id = nt.dataset.noteopen;
+    const tx = currentTx();
+    tx.notesOpen[id] = !tx.notesOpen[id];
+    document.querySelector(`.item[data-id="${id}"]`).classList.toggle('note-open');
+    saveState();
+    return;
+  }
+  // Tab switching
+  const tab = e.target.closest('.tx-tab');
+  if (tab && tab.dataset.txid) {
+    document.body.classList.remove('dashboard-mode');
+    setActive(tab.dataset.txid);
+    return;
+  }
+  // Add transaction (tabs row)
+  if (e.target.closest('#tx-add-btn')) {
+    document.getElementById('tx-add-menu').classList.toggle('open');
+    e.stopPropagation();
+    return;
+  }
+  // Add transaction (dashboard)
+  if (e.target.closest('#dash-add-btn')) {
+    document.getElementById('tx-add-menu').classList.toggle('open');
+    e.stopPropagation();
+    return;
+  }
+  const newType = e.target.closest('[data-newtype]');
+  if (newType) {
+    const t = newType.dataset.newtype;
+    const tx = seedTx(t, DATA[t].title + ' Â· #' + (store.transactions.filter(x=>x.type===t).length + 1));
+    store.transactions.push(tx);
+    store.currentId = tx.id;
+    document.getElementById('tx-add-menu').classList.remove('open');
+    document.body.classList.remove('dashboard-mode');
+    saveStore();
+    renderAll();
+    return;
+  }
+  // Close add menu when clicking outside
+  if (!e.target.closest('#tx-add-menu')) {
+    const m = document.getElementById('tx-add-menu');
+    if (m) m.classList.remove('open');
+  }
+  // Open transaction from dashboard card
+  const dc = e.target.closest('[data-opentx]');
+  if (dc) {
+    document.body.classList.remove('dashboard-mode');
+    setActive(dc.dataset.opentx);
+    return;
+  }
+  // Dashboard toggle
+  if (e.target.closest('#dash-btn')) {
+    document.body.classList.toggle('dashboard-mode');
+    if (document.body.classList.contains('dashboard-mode')) renderDashboard();
+    return;
+  }
+  // Sound toggle
+  if (e.target.closest('#sound-btn')) {
+    setMuted(!_audioMuted);
+    if (!_audioMuted) playSuccessSound(); // confirmation chirp on enable
+    return;
+  }
+  // Archive / Duplicate / Delete current tx
+  if (e.target.closest('[data-archive]')) {
+    const tx = currentTx();
+    tx.archived = !tx.archived;
+    saveStore();
+    // If we archived, switch to the next active transaction
+    if (tx.archived) {
+      const next = store.transactions.find(t => !t.archived);
+      if (next) store.currentId = next.id;
+      else {
+        const fresh = seedTx('listing', 'New Listing');
+        store.transactions.push(fresh);
+        store.currentId = fresh.id;
+      }
+    }
+    saveStore();
+    renderAll();
+    return;
+  }
+  if (e.target.closest('[data-duplicate]')) {
+    const tx = currentTx();
+    const copy = JSON.parse(JSON.stringify(tx));
+    copy.id = uid();
+    copy.label = (tx.label || 'Transaction') + ' (copy)';
+    copy.createdAt = Date.now();
+    copy.archived = false;
+    store.transactions.push(copy);
+    store.currentId = copy.id;
+    saveStore();
+    renderAll();
+    return;
+  }
+  if (e.target.closest('[data-delete]')) {
+    const tx = currentTx();
+    if (!confirm('Delete "' + (tx.label || 'this transaction') + '"? This cannot be undone.')) return;
+    store.transactions = store.transactions.filter(t => t.id !== tx.id);
+    if (!store.transactions.length) {
+      const fresh = seedTx('listing', 'New Listing');
+      store.transactions.push(fresh);
+    }
+    store.currentId = store.transactions[0].id;
+    saveStore();
+    renderAll();
+    return;
+  }
+  const filt = e.target.closest('[data-filter]');
+  if (filt) {
+    const key = filt.dataset.filter;
+    document.querySelectorAll(`[data-filter="${key}"]`).forEach(b => b.classList.remove('active'));
+    filt.classList.add('active');
+    applyFilter(key, filt.dataset.mode);
+    return;
+  }
+  if (e.target.closest('#print-btn')) { window.print(); return; }
+  const scan = e.target.closest('[data-scan-section]');
+  if (scan) { startLicenseScan(scan); return; }
+  if (e.target.closest('[data-add-client2]')) {
+    const tx = currentTx();
+    tx.showClient2 = true;
+    saveStore();
+    renderLists();
+    updateProgress(tx.type);
+    return;
+  }
+  if (e.target.closest('[data-remove-client2]')) {
+    const tx = currentTx();
+    tx.showClient2 = false;
+    saveStore();
+    renderLists();
+    updateProgress(tx.type);
+    return;
+  }
+});
+
+/* ============== License scanning ============== */
+function sectionPalette(name) {
+  // Returns { accent, bg, bgSoft } based on section name
+  const map = {
+    'Client #1':              { accent: '#5b6fbb', bg: '#eef1fa', bgSoft: '#f6f8fd' },
+    'Client #2':              { accent: '#5b6fbb', bg: '#eef1fa', bgSoft: '#f6f8fd' },
+    'Important Dates':        { accent: '#b8763a', bg: '#fbf0e0', bgSoft: '#fdf8ef' },
+    'Accepted Offer Dates':   { accent: '#a85a3a', bg: '#fbe9e0', bgSoft: '#fdf4ef' },
+    'Skyslope Documents':     { accent: '#3d8b8b', bg: '#e0f0f0', bgSoft: '#eef7f7' },
+    'Home Info':              { accent: '#6b8f3d', bg: '#eaf2dd', bgSoft: '#f4f8ec' },
+    'Pre-Listing Checklist':  { accent: '#9c5fb0', bg: '#f3e8f7', bgSoft: '#faf4fb' },
+    'Pre-Offer Setup':        { accent: '#9c5fb0', bg: '#f3e8f7', bgSoft: '#faf4fb' },
+    'Pre-Sale Setup':         { accent: '#9c5fb0', bg: '#f3e8f7', bgSoft: '#faf4fb' },
+    'Listing Live':           { accent: '#c44d6f', bg: '#fbe4ec', bgSoft: '#fdf2f6' },
+    'Openhouse Checklist':    { accent: '#3a7ca5', bg: '#e0eef8', bgSoft: '#eff6fb' },
+    'Accepted Offer Subjects':{ accent: '#a85a3a', bg: '#fbe9e0', bgSoft: '#fdf4ef' },
+    'Post Sale Steps':        { accent: '#4a8c5a', bg: '#e2f1e7', bgSoft: '#eff8f3' },
+    'Other Realtor Info':     { accent: '#8a6d3a', bg: '#f3ecdb', bgSoft: '#f9f6ec' },
+    'Seller Lawyer Info':     { accent: '#7a3a8a', bg: '#efe2f3', bgSoft: '#f7f0fa' },
+    'Buyer Lawyer Info':      { accent: '#3a6a8a', bg: '#e0eaf3', bgSoft: '#eef3f9' },
+    'Commission':             { accent: '#1a8f4c', bg: '#dff3e6', bgSoft: '#eef9f1' },
+  };
+  return map[name] || { accent: '#6a655c', bg: '#f0ece2', bgSoft: '#f7f4ec' };
+}
+
+function startLicenseScan(btn) {
+  const sidx = parseInt(btn.dataset.scanSection, 10);
+  const tx = currentTx();
+  if (!tx) return;
+  openScanModal(tx, sidx);
+}
+
+let _scanContext = null; // { tx, sidx, dataUrl, mime }
+
+function openScanModal(tx, sidx) {
+  _scanContext = { tx, sidx, dataUrl: null, mime: null };
+  const modal = document.getElementById('scan-modal');
+  const sec = DATA[tx.type].sections[sidx];
+  document.getElementById('scan-title').textContent = `Scan license â ${sec.name}`;
+  document.getElementById('scan-sub').textContent = `Paste, drop, or upload a photo and we'll auto-fill ${sec.name}'s fields.`;
+  document.getElementById('scan-status').textContent = '';
+  document.getElementById('scan-preview').classList.remove('show');
+  document.getElementById('scan-preview-img').src = '';
+  document.getElementById('scan-go').disabled = true;
+  document.getElementById('scan-go').classList.remove('busy');
+  document.getElementById('scan-go').textContent = 'Extract info';
+  modal.classList.add('open');
+  // focus the drop zone so paste works without an extra click
+  setTimeout(() => document.getElementById('scan-drop').focus(), 30);
+}
+function closeScanModal() {
+  document.getElementById('scan-modal').classList.remove('open');
+  _scanContext = null;
+}
+function setScanImage(dataUrl, mime) {
+  if (!_scanContext) return;
+  _scanContext.dataUrl = dataUrl;
+  _scanContext.mime = mime || 'image/jpeg';
+  const preview = document.getElementById('scan-preview');
+  const img = document.getElementById('scan-preview-img');
+  img.src = dataUrl;
+  preview.classList.add('show');
+  document.getElementById('scan-go').disabled = false;
+  document.getElementById('scan-status').textContent = 'Image ready. Click "Extract info" to scan.';
+}
+
+async function runScanExtraction() {
+  if (!_scanContext || !_scanContext.dataUrl) return;
+  const { tx, sidx, dataUrl, mime } = _scanContext;
+  const goBtn = document.getElementById('scan-go');
+  const statusEl = document.getElementById('scan-status');
+  goBtn.classList.add('busy');
+  goBtn.disabled = true;
+  goBtn.textContent = 'Scanning';
+  statusEl.textContent = 'Compressing imageâ¦';
+  try {
+    // Downscale and compress before sending â the image is only used for one-shot
+    // text extraction and is NOT stored anywhere after this call.
+    const compressed = await compressImageForScan(dataUrl);
+    statusEl.textContent = 'Reading licenseâ¦';
+    const result = await window.claude.complete({
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: compressed.base64 } },
+          { type: 'text', text: 'You are extracting fields from a North American driver\'s license (US or Canadian â including BC, AB, ON licenses). Look at every part of the card carefully. Return ONLY a valid JSON object â no markdown, no commentary, no extra text.\n\nSchema:\n{\n  "legal_name": "Full name in FIRST NAME then LAST NAME order (e.g. \\"Lili Chen\\", not \\"Chen, Lili\\"). Combine given names and surname, ignore middle initials unless they are part of given name.",\n  "address": "Full mailing address as one line: street, city, province/state, postal/zip code. Include country only if shown. Canadian postal codes are formatted A1A 1A1.",\n  "dl_number": "License number â usually labelled DL# or LIC#",\n  "expiry": "YYYY-MM-DD",\n  "dob": "YYYY-MM-DD"\n}\n\nRules:\n- If a field is genuinely unreadable, use null. Do NOT use null just because the format looks unusual.\n- The address is the small block of 2-3 lines printed BELOW the name, before the issued/expires dates. It always exists on a real license.\n- For dates, infer the format. \\"1972-Jun-05\\" â \\"1972-06-05\\". \\"2028-Jun-05\\" â \\"2028-06-05\\". \\"05/06/2028\\" assume DD/MM/YYYY for Canadian licenses, MM/DD/YYYY for US.\n- Names like "CHEN, LILI" must be returned as "Lili Chen" (given name first, title-case).' }
+        ]
+      }]
+    });
+    const json = parseJSON(result);
+    if (!json) throw new Error('Could not parse the license. Try a clearer photo.');
+    applyLicenseData(tx, sidx, json);
+    // Discard the image from memory now â we never persist it
+    _scanContext.dataUrl = null;
+    saveStore();
+    renderLists();
+    updateProgress(tx.type);
+    closeScanModal();
+    toast('License scanned and fields filled.');
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = 'Scan failed: ' + (err.message || 'unknown error');
+    goBtn.classList.remove('busy');
+    goBtn.disabled = false;
+    goBtn.textContent = 'Try again';
+  }
+}
+
+// Downscale + JPEG-compress a data URL so the payload fits under the API limit.
+// Targets a max long-edge of ~1280px and tries successively lower JPEG quality
+// until the base64 payload is comfortably under 240 KB.
+function compressImageForScan(dataUrl) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const MAX_DIM = 1280;
+        let { width, height } = img;
+        const scale = Math.min(1, MAX_DIM / Math.max(width, height));
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, width, height);
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const TARGET_BYTES = 240 * 1024; // ~240 KB raw â ~180 KB after base64? actually base64 inflates ~33%; aim lower
+        // We aim for the BASE64 string to be < ~250KB. Base64 â 1.37x raw; so raw target ~180 KB.
+        // We bias toward HIGHER quality so small text (address, postal code) stays legible.
+        const RAW_TARGET = 180 * 1024;
+        const qualities = [0.92, 0.85, 0.78, 0.7, 0.6, 0.5];
+        let best = null;
+        for (const q of qualities) {
+          const url = canvas.toDataURL('image/jpeg', q);
+          const b64 = url.split(',')[1];
+          // Base64 length Ã 3/4 â raw byte size
+          const rawBytes = Math.floor(b64.length * 3 / 4);
+          if (!best || rawBytes < best.rawBytes) best = { url, b64, rawBytes, q };
+          if (rawBytes <= RAW_TARGET) {
+            return resolve({ dataUrl: url, base64: b64, bytes: rawBytes, quality: q });
+          }
+        }
+        // If still too big, scale down further and retry once at low quality
+        if (best.rawBytes > RAW_TARGET) {
+          const c2 = document.createElement('canvas');
+          c2.width = Math.round(width * 0.7);
+          c2.height = Math.round(height * 0.7);
+          const cx = c2.getContext('2d');
+          cx.fillStyle = '#fff'; cx.fillRect(0, 0, c2.width, c2.height);
+          cx.drawImage(img, 0, 0, c2.width, c2.height);
+          const url = c2.toDataURL('image/jpeg', 0.55);
+          const b64 = url.split(',')[1];
+          const rawBytes = Math.floor(b64.length * 3 / 4);
+          return resolve({ dataUrl: url, base64: b64, bytes: rawBytes, quality: 0.55 });
+        }
+        resolve({ dataUrl: best.url, base64: best.b64, bytes: best.rawBytes, quality: best.q });
+      } catch (e) { reject(e); }
+    };
+    img.onerror = () => reject(new Error('Could not load the pasted image'));
+    img.src = dataUrl;
+  });
+}
+
+function pickFileForScan() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = async () => {
+    const f = input.files[0];
+    if (!f) return;
+    const dataUrl = await fileToDataURL(f);
+    setScanImage(dataUrl, f.type);
+  };
+  input.click();
+}
+
+function fileToDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+function parseJSON(s) {
+  if (!s) return null;
+  // strip code fences if any
+  const cleaned = String(s).replace(/```json|```/g, '').trim();
+  try { return JSON.parse(cleaned); } catch (e) {}
+  // try to find a JSON object in the string
+  const m = cleaned.match(/\{[\s\S]*\}/);
+  if (m) { try { return JSON.parse(m[0]); } catch (e) {} }
+  return null;
+}
+function applyLicenseData(tx, sidx, data) {
+  const sec = DATA[tx.type].sections[sidx];
+  // Normalize name: handle "LAST, FIRST" â "First Last", and uppercase â Title Case
+  const normalizedName = normalizeName(data.legal_name);
+  const map = {
+    'legal name': normalizedName,
+    'address': data.address,
+    'drivers license #': data.dl_number,
+    'expiry date': data.expiry,
+    'date of birth': data.dob,
+  };
+  sec.items.forEach(it => {
+    const key = it.label.toLowerCase().trim();
+    const val = map[key];
+    if (val != null && val !== '') {
+      tx.values[it.id] = val;
+      // Auto-check rows we just filled from the scan
+      if (!tx.checked[it.id]) tx.checked[it.id] = true;
+    }
+  });
+}
+
+function normalizeName(raw) {
+  if (!raw) return raw;
+  let n = String(raw).trim();
+  // "CHEN, LILI" or "Chen, Lili Marie" â swap â "LILI MARIE CHEN"
+  if (n.includes(',')) {
+    const [last, rest] = n.split(',', 2).map(s => s.trim());
+    if (last && rest) n = `${rest} ${last}`;
+  }
+  // Title-case each word, preserving hyphens / apostrophes
+  n = n.toLowerCase().replace(/\b([a-z])([a-z'â\-]*)/g, (_, a, b) => a.toUpperCase() + b);
+  return n;
+}
+function toast(msg, isError) {
+  const el = document.createElement('div');
+  el.className = 'scan-toast' + (isError ? ' error' : '');
+  el.textContent = msg;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 250);
+  }, 3500);
+}
+
+document.addEventListener('input', (e) => {
+  const note = e.target.closest('[data-note]');
+  if (note) {
+    const id = note.dataset.note;
+    const tx = currentTx();
+    tx.notes[id] = note.value;
+    document.querySelector(`.item[data-id="${id}"]`).classList.toggle('has-note', !!note.value.trim());
+    saveState();
+    return;
+  }
+  const v = e.target.closest('[data-value]');
+  if (v) {
+    const tx = currentTx();
+    const id = v.dataset.value;
+    const isPhone = v.hasAttribute('data-phone');
+    if (isPhone) {
+      // Live-format as user types: capture caret, reformat, restore caret position adjusted
+      const before = v.value;
+      const caret = v.selectionStart || before.length;
+      const digitsBeforeCaret = before.slice(0, caret).replace(/\D/g, '').length;
+      const formatted = formatPhone(before);
+      v.value = formatted;
+      // Place caret after the same number of digits
+      let pos = 0, seenDigits = 0;
+      for (; pos < formatted.length && seenDigits < digitsBeforeCaret; pos++) {
+        if (/\d/.test(formatted[pos])) seenDigits++;
+      }
+      try { v.setSelectionRange(pos, pos); } catch (e) {}
+      // Store digits-only canonical, but keep formatted for display
+      tx.values[id] = formatted;
+    } else if (v.hasAttribute('data-datepicker')) {
+      // While typing, just store the raw text â we'll parse on blur/Enter
+      tx.values[id] = v.value;
+    } else {
+      tx.values[id] = v.value;
+    }
+    // Auto-check when a value is entered, uncheck when cleared
+    const hasVal = !!String(v.value || '').trim();
+    if (hasVal && !tx.checked[id]) {
+      tx.checked[id] = true;
+      const el = document.querySelector(`.item[data-id="${id}"]`);
+      if (el) el.classList.add('done');
+      playSuccessSound();
+      updateProgress(tx.type);
+      updateTabPct(tx);
+      renderSummary();
+    }
+    // Refresh needs-attention state
+    refreshAttention(id);
+    saveState();
+    return;
+  }
+  const cf = e.target.closest('[data-clientfield]');
+  if (cf) {
+    const tx = currentTx();
+    tx[cf.dataset.clientfield] = cf.value;
+    saveState();
+    return;
+  }
+  const rn = e.target.closest('[data-rename]');
+  if (rn) {
+    const tx = currentTx();
+    tx.label = rn.value;
+    saveState();
+    // live update tab label
+    const tab = document.querySelector(`.tx-tab[data-txid="${tx.id}"] .tab-label`);
+    if (tab) tab.textContent = rn.value || 'Untitled';
+    return;
+  }
+  const s = e.target.closest('[data-search]');
+  if (s) {
+    applySearch(s.dataset.search, s.value.trim().toLowerCase());
+  }
+});
+
+function toggleCheck(id) {
+  const tx = currentTx();
+  const wasChecked = !!tx.checked[id];
+  tx.checked[id] = !tx.checked[id];
+  const el = document.querySelector(`.item[data-id="${id}"]`);
+  if (el) el.classList.toggle('done', !!tx.checked[id]);
+  if (!wasChecked && tx.checked[id]) playSuccessSound();
+  refreshAttention(id);
+  updateProgress(tx.type);
+  // also update tab pct
+  updateTabPct(tx);
+  saveState();
+  reorderWithAnimation(tx.type, id);
+}
+
+function updateTabPct(tx) {
+  const tabPct = document.querySelector(`.tx-tab[data-txid="${tx.id}"] .tab-pct`);
+  if (tabPct) {
+    const list = DATA[tx.type];
+    const total = list.sections.reduce((s, sec) => s + sec.items.length, 0);
+    const done = list.sections.reduce((s, sec) => s + sec.items.filter(it => tx.checked[it.id]).length, 0);
+    tabPct.textContent = (total ? Math.round((done/total)*100) : 0) + '%';
+  }
+}
+
+function refreshAttention(id) {
+  const tx = currentTx();
+  if (!tx) return;
+  const el = document.querySelector(`.item[data-id="${id}"]`);
+  if (!el) return;
+  // Find the item def to know if it has a field
+  let itemDef = null;
+  const list = DATA[tx.type];
+  for (const sec of list.sections) {
+    const found = sec.items.find(x => x.id === id);
+    if (found) { itemDef = found; break; }
+  }
+  const hasField = !!(itemDef && itemDef.field);
+  const valEmpty = hasField && !(tx.values[id] && String(tx.values[id]).trim());
+  const needs = !tx.checked[id] || valEmpty;
+  el.classList.toggle('needs-attention', needs);
+}
+
+function reorderWithAnimation(key, changedId) {
+  const body = document.querySelector(`[data-body="${key}"]`);
+  if (!body) return;
+  // capture old positions of all items in this list
+  const oldRects = new Map();
+  body.querySelectorAll('.item').forEach(el => {
+    oldRects.set(el.dataset.id, el.getBoundingClientRect());
+  });
+  // remember which items had their note expanded (preserved by state.notesOpen)
+  // and preserve search/filter state by re-applying after render
+  const search = document.querySelector(`[data-search="${key}"]`);
+  const activeFilter = document.querySelector(`[data-filter="${key}"].active`);
+  renderBody(key);
+  if (search && search.value) applySearch(key, search.value.trim().toLowerCase());
+  if (activeFilter) applyFilter(key, activeFilter.dataset.mode);
+  // animate: for each item that existed before, translate from old â new
+  body.querySelectorAll('.item').forEach(el => {
+    const id = el.dataset.id;
+    const oldR = oldRects.get(id);
+    if (!oldR) return;
+    const newR = el.getBoundingClientRect();
+    const dx = oldR.left - newR.left;
+    const dy = oldR.top - newR.top;
+    if (Math.abs(dy) < 1 && Math.abs(dx) < 1) return;
+    el.style.transition = 'none';
+    el.style.transform = `translate(${dx}px, ${dy}px)`;
+    if (id === changedId) el.style.zIndex = '2';
+    requestAnimationFrame(() => {
+      el.style.transition = 'transform .42s cubic-bezier(.2,.7,.2,1)';
+      el.style.transform = '';
+      setTimeout(() => {
+        el.style.transition = '';
+        el.style.transform = '';
+        el.style.zIndex = '';
+      }, 460);
+    });
+  });
+}
+
+function setView(view) { /* deprecated â multi-tx mode */ }
+
+function applyFilter(key, mode) {
+  const items = document.querySelectorAll(`[data-body="${key}"] .item`);
+  items.forEach(it => {
+    const isDone = it.classList.contains('done');
+    let show = true;
+    if (mode === 'open') show = !isDone;
+    if (mode === 'done') show = isDone;
+    it.style.display = show ? '' : 'none';
+  });
+}
+
+function applySearch(key, q) {
+  const items = document.querySelectorAll(`[data-body="${key}"] .item`);
+  items.forEach(it => {
+    if (!q) { it.style.display = ''; return; }
+    const match = it.dataset.label.includes(q);
+    it.style.display = match ? '' : 'none';
+  });
+}
+
+/* ============== Helpers ============== */
+
+function escapeAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+function escapeText(s) { return String(s).replace(/</g, '&lt;'); }
+
+function setAllSectionsCollapsed(key, collapsed) {
+  const tx = currentTx();
+  if (!tx || tx.type !== key) return;
+  tx.collapsed = tx.collapsed || {};
+  // Mark every section in this list
+  DATA[key].sections.forEach((sec, sidx) => {
+    const secId = `${key}_sec_${sidx}`;
+    tx.collapsed[secId] = collapsed;
+  });
+  // Update DOM
+  document.querySelectorAll(`[data-body="${key}"] [data-toggle-section]`).forEach(h => {
+    h.classList.toggle('collapsed', collapsed);
+  });
+  document.querySelectorAll(`[data-body="${key}"] .item`).forEach(it => {
+    it.classList.toggle('sec-collapsed', collapsed);
+  });
+  saveState();
+}
+
+/* ============== Boot ============== */
+
+renderAll();
+setMuted(_audioMuted);
+
+/* ============== Scan modal wiring ============== */
+(function setupScanModal() {
+  const modal = document.getElementById('scan-modal');
+  const drop = document.getElementById('scan-drop');
+  const goBtn = document.getElementById('scan-go');
+  const cancelBtn = document.getElementById('scan-cancel');
+
+  // Click drop zone -> file picker
+  drop.addEventListener('click', () => pickFileForScan());
+  drop.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickFileForScan(); }
+  });
+
+  // Drag & drop
+  drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('dragover'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
+  drop.addEventListener('drop', async (e) => {
+    e.preventDefault();
+    drop.classList.remove('dragover');
+    const f = e.dataTransfer.files[0];
+    if (f && f.type.startsWith('image/')) {
+      const dataUrl = await fileToDataURL(f);
+      setScanImage(dataUrl, f.type);
+    }
+  });
+
+  // Paste from clipboard (works anywhere when modal is open)
+  document.addEventListener('paste', async (e) => {
+    if (!modal.classList.contains('open')) return;
+    const items = (e.clipboardData || {}).items || [];
+    for (const it of items) {
+      if (it.type && it.type.startsWith('image/')) {
+        const file = it.getAsFile();
+        if (file) {
+          const dataUrl = await fileToDataURL(file);
+          setScanImage(dataUrl, file.type);
+          e.preventDefault();
+          return;
+        }
+      }
+    }
+    document.getElementById('scan-status').textContent = 'No image found in clipboard. Try copying the photo again.';
+  });
+
+  // Buttons
+  goBtn.addEventListener('click', runScanExtraction);
+  cancelBtn.addEventListener('click', closeScanModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeScanModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeScanModal();
+  });
+})();
+
+// ===== Custom date picker =====
+const DP = {
+  pop: null,
+  targetInput: null,
+  view: 'days', // 'days' | 'months' | 'years'
+  cursor: null, // Date for current view (year/month)
+
+  open(input) {
+    this.close();
+    this.targetInput = input;
+    const existing = parseDateInput(input.value) || (state.values && state.values[input.dataset.value] ? parseDateInput(state.values[input.dataset.value]) : null);
+    let initial;
+    if (existing) {
+      const [y,m,d] = existing.split('-').map(Number);
+      initial = new Date(y, m-1, d);
+    } else {
+      initial = new Date();
+    }
+    this.cursor = new Date(initial.getFullYear(), initial.getMonth(), 1);
+    this.selected = existing;
+    this.view = 'days';
+
+    const pop = document.createElement('div');
+    pop.className = 'datepicker-pop';
+    pop.addEventListener('mousedown', (e) => e.stopPropagation());
+    document.body.appendChild(pop);
+    this.pop = pop;
+    this.render();
+
+    // Position
+    const r = input.getBoundingClientRect();
+    let top = r.bottom + 6;
+    let left = r.left;
+    const ph = pop.offsetHeight, pw = pop.offsetWidth;
+    if (top + ph > window.innerHeight - 8) top = Math.max(8, r.top - ph - 6);
+    if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+  },
+  close() {
+    if (this.pop) { this.pop.remove(); this.pop = null; }
+    this.targetInput = null;
+  },
+  render() {
+    if (!this.pop) return;
+    if (this.view === 'days') this.renderDays();
+    else if (this.view === 'months') this.renderMonths();
+    else this.renderYears();
+  },
+  renderDays() {
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const dows = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+    const y = this.cursor.getFullYear(), m = this.cursor.getMonth();
+    const first = new Date(y, m, 1);
+    const startDow = first.getDay();
+    const daysInMonth = new Date(y, m+1, 0).getDate();
+    const prevDays = new Date(y, m, 0).getDate();
+
+    const today = new Date();
+    const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+    const sel = this.selected;
+
+    const cells = [];
+    // Prev month tail
+    for (let i = startDow-1; i >= 0; i--) {
+      const d = prevDays - i;
+      cells.push({ d, other: true, ts: new Date(y, m-1, d) });
+    }
+    // Current month
+    for (let d = 1; d <= daysInMonth; d++) {
+      cells.push({ d, other: false, ts: new Date(y, m, d) });
+    }
+    // Next month head
+    while (cells.length % 7 !== 0 || cells.length < 42) {
+      const idx = cells.length - (startDow + daysInMonth) + 1;
+      cells.push({ d: idx, other: true, ts: new Date(y, m+1, idx) });
+      if (cells.length >= 42) break;
+    }
+
+    const cellHtml = cells.map(c => {
+      const key = `${c.ts.getFullYear()}-${String(c.ts.getMonth()+1).padStart(2,'0')}-${String(c.ts.getDate()).padStart(2,'0')}`;
+      const classes = ['dp-day'];
+      if (c.other) classes.push('dp-other');
+      if (key === todayKey) classes.push('dp-today');
+      if (key === sel) classes.push('dp-selected');
+      return `<div class="${classes.join(' ')}" data-dpkey="${key}">${c.d}</div>`;
+    }).join('');
+
+    this.pop.innerHTML = `
+      <div class="dp-head">
+        <div class="dp-title" data-dpaction="month-view">${months[m]} ${y}</div>
+        <div class="dp-nav">
+          <button data-dpaction="prev" title="Previous">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button data-dpaction="next" title="Next">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="dp-grid">
+        ${dows.map(d => `<div class="dp-dow">${d}</div>`).join('')}
+        ${cellHtml}
+      </div>
+      <div class="dp-foot">
+        <button data-dpaction="today">Today</button>
+        <button data-dpaction="clear" class="dp-clear">Clear</button>
+      </div>
+    `;
+  },
+  renderMonths() {
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const y = this.cursor.getFullYear();
+    const today = new Date();
+    const cells = months.map((mn, i) => {
+      const cls = ['dp-mcell'];
+      if (i === today.getMonth() && y === today.getFullYear()) cls.push('dp-current');
+      if (i === this.cursor.getMonth()) cls.push('dp-selected');
+      return `<div class="${cls.join(' ')}" data-dpaction="set-month" data-dpmonth="${i}">${mn}</div>`;
+    }).join('');
+    this.pop.innerHTML = `
+      <div class="dp-head">
+        <div class="dp-title" data-dpaction="year-view">${y}</div>
+        <div class="dp-nav">
+          <button data-dpaction="prev-year"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button data-dpaction="next-year"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+      <div class="dp-mgrid">${cells}</div>
+      <div class="dp-foot">
+        <button data-dpaction="today">Today</button>
+        <button data-dpaction="clear" class="dp-clear">Clear</button>
+      </div>
+    `;
+  },
+  renderYears() {
+    const cy = this.cursor.getFullYear();
+    const startY = Math.floor(cy / 12) * 12;
+    const today = new Date();
+    const cells = [];
+    for (let i = 0; i < 12; i++) {
+      const y = startY + i;
+      const cls = ['dp-ycell'];
+      if (y === today.getFullYear()) cls.push('dp-current');
+      if (y === cy) cls.push('dp-selected');
+      cells.push(`<div class="${cls.join(' ')}" data-dpaction="set-year" data-dpyear="${y}">${y}</div>`);
+    }
+    this.pop.innerHTML = `
+      <div class="dp-head">
+        <div class="dp-title">${startY} â ${startY+11}</div>
+        <div class="dp-nav">
+          <button data-dpaction="prev-decade"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button data-dpaction="next-decade"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+      <div class="dp-ygrid">${cells.join('')}</div>
+      <div class="dp-foot">
+        <button data-dpaction="today">Today</button>
+        <button data-dpaction="clear" class="dp-clear">Clear</button>
+      </div>
+    `;
+  },
+  pick(key) {
+    if (!this.targetInput) return;
+    const input = this.targetInput;
+    const id = input.dataset.value;
+    const tx = currentTx();
+    if (key) {
+      tx.values[id] = key;
+      input.value = formatDateDisplay(key);
+      // Auto-check the row
+      if (!tx.checked[id]) {
+        tx.checked[id] = true;
+        const el = document.querySelector(`.item[data-id="${id}"]`);
+        if (el) el.classList.add('done');
+        playSuccessSound();
+        updateProgress(tx.type);
+        updateTabPct(tx);
+      }
+    } else {
+      tx.values[id] = '';
+      input.value = '';
+    }
+    refreshAttention(id);
+    saveState();
+    renderSummary();
+    if (key) reorderWithAnimation(tx.type, id);
+    this.close();
+  },
+  handleClick(e) {
+    const a = e.target.closest('[data-dpaction]');
+    const dayCell = e.target.closest('[data-dpkey]');
+    if (dayCell) { this.pick(dayCell.dataset.dpkey); return; }
+    if (!a) return;
+    const action = a.dataset.dpaction;
+    const today = new Date();
+    if (action === 'prev') { this.cursor = new Date(this.cursor.getFullYear(), this.cursor.getMonth()-1, 1); this.render(); }
+    else if (action === 'next') { this.cursor = new Date(this.cursor.getFullYear(), this.cursor.getMonth()+1, 1); this.render(); }
+    else if (action === 'prev-year') { this.cursor = new Date(this.cursor.getFullYear()-1, this.cursor.getMonth(), 1); this.render(); }
+    else if (action === 'next-year') { this.cursor = new Date(this.cursor.getFullYear()+1, this.cursor.getMonth(), 1); this.render(); }
+    else if (action === 'prev-decade') { this.cursor = new Date(this.cursor.getFullYear()-12, this.cursor.getMonth(), 1); this.render(); }
+    else if (action === 'next-decade') { this.cursor = new Date(this.cursor.getFullYear()+12, this.cursor.getMonth(), 1); this.render(); }
+    else if (action === 'month-view') { this.view = 'months'; this.render(); }
+    else if (action === 'year-view') { this.view = 'years'; this.render(); }
+    else if (action === 'set-month') {
+      this.cursor = new Date(this.cursor.getFullYear(), parseInt(a.dataset.dpmonth), 1);
+      this.view = 'days'; this.render();
+    }
+    else if (action === 'set-year') {
+      this.cursor = new Date(parseInt(a.dataset.dpyear), this.cursor.getMonth(), 1);
+      this.view = 'months'; this.render();
+    }
+    else if (action === 'today') {
+      const key = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+      this.pick(key);
+    }
+    else if (action === 'clear') { this.pick(null); }
+  }
+};
+
+document.addEventListener('mousedown', (e) => {
+  // Open on date input click â but don't preventDefault so user can still type
+  const dpInput = e.target.closest('input[data-datepicker]');
+  if (dpInput) {
+    if (DP.targetInput === dpInput) return; // already open
+    // Defer slightly so the click can also focus the input for typing
+    setTimeout(() => DP.open(dpInput), 0);
+    return;
+  }
+  // Click inside popup â handle there
+  if (e.target.closest('.datepicker-pop')) return;
+  // Otherwise close
+  DP.close();
+});
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.datepicker-pop')) {
+    DP.handleClick(e);
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && DP.pop) DP.close();
+});
+window.addEventListener('scroll', () => DP.close(), true);
+window.addEventListener('resize', () => DP.close());
+
+// Sticky transaction bar â show after scrolling past the client card
+function syncStickyBarVisibility() {
+  const bar = document.getElementById('sticky-tx-bar');
+  if (!bar) return;
+  if (document.body.classList.contains('dashboard-mode')) {
+    bar.classList.remove('visible');
+    return;
+  }
+  const tx = currentTx();
+  if (!tx) { bar.classList.remove('visible'); return; }
+  const clients = document.getElementById('clients');
+  if (!clients) { bar.classList.remove('visible'); return; }
+  const rect = clients.getBoundingClientRect();
+  // Show bar once the client card has scrolled mostly off-screen
+  const shouldShow = rect.bottom < 30;
+  bar.classList.toggle('visible', shouldShow);
+}
+window.addEventListener('scroll', syncStickyBarVisibility, { passive: true });
+window.addEventListener('resize', syncStickyBarVisibility);
+
+// Parse typed date on blur; reformat to "Mon DD, YYYY" when valid
+document.addEventListener('blur', (e) => {
+  // Reorder items in section when a non-date value field loses focus and was auto-checked
+  const valInp = e.target.closest && e.target.closest('input[data-value]:not([data-datepicker])');
+  if (valInp) {
+    const id = valInp.dataset.value;
+    const tx = currentTx();
+    if (tx && tx.checked[id]) {
+      // Only reorder if visible position is wrong (checked but not at top of its checked group)
+      reorderWithAnimation(tx.type, id);
+    }
+  }
+  const inp = e.target.closest && e.target.closest('input[data-datepicker]');
+  if (!inp) return;
+  const id = inp.dataset.value;
+  const tx = currentTx();
+  if (!tx) return;
+  const raw = inp.value.trim();
+  if (!raw) {
+    tx.values[id] = '';
+    inp.value = '';
+    refreshAttention(id);
+    saveState();
+    renderSummary();
+    return;
+  }
+  const parsed = parseDateInput(raw);
+  if (parsed) {
+    tx.values[id] = parsed;
+    inp.value = formatDateDisplay(parsed);
+    if (!tx.checked[id]) {
+      tx.checked[id] = true;
+      const el = document.querySelector(`.item[data-id="${id}"]`);
+      if (el) el.classList.add('done');
+      playSuccessSound();
+      updateProgress(tx.type);
+      updateTabPct(tx);
+    }
+    refreshAttention(id);
+    saveState();
+    renderSummary();
+    reorderWithAnimation(tx.type, id);
+  } else {
+    // Couldn't parse â keep what they typed but flag visually
+    inp.classList.add('date-invalid');
+    setTimeout(() => inp.classList.remove('date-invalid'), 1500);
+  }
+}, true);
+
+// Enter key in date field commits the parse
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+  const inp = e.target.closest && e.target.closest('input[data-datepicker]');
+  if (!inp) return;
+  e.preventDefault();
+  DP.close();
+  inp.blur();
+});
+</script>
+
+<script>
+// Cloud sync bridge - communicates with parent Next.js app
+(function() {
+  // Tell parent we're ready
+  window.parent.postMessage({ type: 'TRACKER_READY' }, '*');
+  
+  // Listen for initial data from parent
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'TRACKER_LOAD' && e.data.payload) {
+      try {
+        // Import cloud data into localStorage (overrides local)
+        var data = e.data.payload;
+        if (data && typeof data === 'object') {
+          Object.keys(data).forEach(function(key) {
+            localStorage.setItem(key, typeof data[key] === 'string' ? data[key] : JSON.stringify(data[key]));
+          });
+          // Reload to apply
+          window.location.reload();
+        }
+      } catch(err) { console.error('Load failed', err); }
+    }
+  });
+  
+  // Override localStorage.setItem to sync to cloud
+  var origSetItem = localStorage.setItem.bind(localStorage);
+  var saveTimer = null;
+  localStorage.setItem = function(key, value) {
+    origSetItem(key, value);
+    // Debounce cloud saves
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function() {
+      // Collect all tracker data
+      var snapshot = {};
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        snapshot[k] = localStorage.getItem(k);
+      }
+      window.parent.postMessage({ type: 'TRACKER_SAVE', payload: snapshot }, '*');
+    }, 800);
+  };
+})();
+</script>
+
+</body>
+</html>
